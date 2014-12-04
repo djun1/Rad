@@ -13,7 +13,7 @@
 
     <Page.Resources>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">Satellite Imagery</x:String>
+        <x:String x:Key="AppName">Radar Imagery</x:String>
     </Page.Resources>
 
     <!--
@@ -63,16 +63,10 @@
             </Grid>
         </StackPanel>
         <!-- Image -->
-        <StackPanel Grid.Row="3" Margin="120,0,40,40">
-            <Grid Height="490" Margin="0,0,40,40">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="725" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <ScrollViewer Grid.Column="0" x:Name="ImgScrollViewer" ZoomMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" MinZoomFactor="1" MaxZoomFactor="3" Margin="0,0,0,0">
-                    <Image x:Name="ImgBox" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                </ScrollViewer>
-            </Grid>
+        <StackPanel Margin="120,0,40,40">
+            <ScrollViewer x:Name="ImgScrollViewer" ZoomMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" MinZoomFactor="1" MaxZoomFactor="3" Margin="0,0,0,0">
+                <Image x:Name="ImgBox" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

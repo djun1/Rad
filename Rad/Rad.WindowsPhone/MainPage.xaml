@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="SATELLITE IMAGERY" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="RADAR IMAGERY" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
             <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Hidden" >
                 <TextBlock x:Name="StationBox" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
             </ScrollViewer>

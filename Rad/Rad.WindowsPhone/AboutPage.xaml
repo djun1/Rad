@@ -23,7 +23,7 @@
 
         <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="SATELLITE IMAGERY" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="RADAR IMAGERY" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
             <TextBlock Text="about" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 
@@ -31,10 +31,10 @@
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <RichTextBlock x:Name="AboutPageTextBlock" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="481" Width="351" FontSize="19">
                 <Paragraph>
-                    <Run Text="The Satellite Imagery app provides a quick source of advanced weather information for mobile users on the go."/>
+                    <Run Text="The Radar Imagery app provides a quick source of advanced weather information for mobile users on the go."/>
                     <LineBreak/>
                     <LineBreak/>
-                    <Run Text="All data are from the National Oceanic and Atmospheric Administration (NOAA). The app makes no attempt to ensure the quality and accuracy of the data."/>
+                    <Run Text="All data are from Environment Canada (EC). The app makes no attempt to ensure the quality and accuracy of the data."/>
                     <LineBreak/>
                     <LineBreak/>
                     <Run Text="The internet connection of the phone is used to access data. No information about the user or the phone is collected, stored, or shared."/>
