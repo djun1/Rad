@@ -28,7 +28,7 @@
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
-        <ScrollViewer Grid.Row="1" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" Padding="0,0,0,25">
+        <ScrollViewer Grid.Row="1" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" Padding="0,0,0,0">
         <StackPanel Grid.Row="1" Margin="19,9.5,19,0">
             
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Station" />
