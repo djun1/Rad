@@ -31,29 +31,78 @@
                 <x:String>Saskatchewan</x:String>
             </ComboBox>
             <ComboBox Margin="0,17,0,0" Padding="10,0,27,0" Width="auto">
-                
             </ComboBox>
         </StackPanel>
 
         <!-- Define more Content Sections below as necessary -->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <!-- Section 2 header -->
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" />
-            <!-- Section 2 body -->
+            <!-- Section header -->
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Radar Product" />
+            <!-- Section body -->
             <Grid Margin="0,17,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <RadioButton x:Name="DurationRadioButton1" Grid.Column="0" Content="1 hr" IsChecked="True" GroupName="DurationBoxes"/>
-                <RadioButton x:Name="DurationRadioButton2" Grid.Column="1" Content="3 hr" GroupName="DurationBoxes"/>
+                <RadioButton x:Name="ProductRadioButton1" Grid.Column="0" Content="PRECIPET" IsChecked="True" GroupName="ProductBoxes" />
+                <RadioButton x:Name="ProductRadioButton2" Grid.Column="1" Content="CAPPI" GroupName="ProductBoxes"/>
+
             </Grid>
         </StackPanel>
 
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <!-- Section 3 header -->
+            <!-- Section header -->
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Precipitation Type" />
+        <!-- Section body -->
+        <Grid Margin="0,17,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+                <RadioButton x:Name="PrecipitationRadioButton1" Grid.Column="0" Content="Rain" IsChecked="True" GroupName="PrecipitationBoxes" />
+                <RadioButton x:Name="PrecipitationRadioButton2" Grid.Column="1" Content="Snow" GroupName="PrecipitationBoxes"/>
+
+            </Grid>
+    </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <!-- Section header -->
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Overlays" />
+            <!-- Section body -->
+            <Grid Margin="0,17,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <CheckBox Grid.Column="0" Grid.Row="0" Content="Cities"  />
+                <CheckBox Grid.Column="1" Grid.Row="0" Content="More Cities" />
+                <CheckBox Grid.Column="0" Grid.Row="1" Content="Roads" />
+                <CheckBox Grid.Column="1" Grid.Row="1" Content="Road Numbers" />
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <!-- Section header -->
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" />
+            <!-- Section body -->
+            <Grid Margin="0,17,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="DurationRadioButton1" Grid.Column="0" Content="1 hr" IsChecked="True" GroupName="DurationBoxes" />
+                <RadioButton x:Name="DurationRadioButton2" Grid.Column="1" Content="3 hr" GroupName="DurationBoxes"/>
+            </Grid>
+        </StackPanel>
+        
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <!-- Section header -->
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Loop Speed (time per image)" />
-            <!-- Section 3 body -->
+            <!-- Section body -->
             <Grid Margin="0,17,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

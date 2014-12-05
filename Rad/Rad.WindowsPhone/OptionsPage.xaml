@@ -19,8 +19,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
@@ -30,10 +28,11 @@
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
+        <ScrollViewer Grid.Row="1" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" Padding="0,0,0,25">
         <StackPanel Grid.Row="1" Margin="19,9.5,19,0">
+            
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Station" />
-            <!-- Section 1 body -->
-            <ComboBox x:Name="StationComboBox" Margin="0,17,0,0" Padding="0,0,27,0" Width="auto" SelectionChanged="StationComboBox_SelectionChanged" SelectedIndex="0">
+            <ComboBox x:Name="StationComboBox" Margin="0,0,0,0" Padding="0,0,27,0" Width="auto" SelectionChanged="StationComboBox_SelectionChanged" SelectedIndex="0">
                 <x:String>Alberta</x:String>
                 <x:String>British Columbia</x:String>
                 <x:String>Manitoba</x:String>
@@ -44,36 +43,67 @@
                 <x:String>Saskatchewan</x:String>
             </ComboBox>
             <ComboBox >
-                
             </ComboBox>
+            
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Radar Product" Margin="0,12,0,0"/>
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="ProductRadioButton1" Grid.Column="0" Content="PRECIPET" IsChecked="True" GroupName="ProductBoxes" />
+                    <RadioButton x:Name="ProductRadioButton2" Grid.Column="1" Content="CAPPI" GroupName="ProductBoxes"/>
+                </Grid>
+
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Precipitation Type" Margin="0,12,0,0"/>
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="PrecipitationRadioButton1" Grid.Column="0" Content="Rain" IsChecked="True" GroupName="PrecipitationBoxes" />
+                    <RadioButton x:Name="PrecipitationRadioButton2" Grid.Column="1" Content="Snow" GroupName="PrecipitationBoxes"/>
+
+                </Grid>
+
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Overlays" Margin="0,12,0,0"/>
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Column="0" Grid.Row="0" Content="Cities"  />
+                    <CheckBox Grid.Column="1" Grid.Row="0" Content="More Cities" />
+                    <CheckBox Grid.Column="0" Grid.Row="1" Content="Roads" />
+                    <CheckBox Grid.Column="1" Grid.Row="1" Content="Road Numbers" />
+                </Grid>
+
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" Margin="0,12,0,0"/>
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="DurationRadioButton1" Grid.Column="0" Content="1 hr" GroupName="DurationBoxes" IsChecked="True"/>
+                    <RadioButton x:Name="DurationRadioButton2" Grid.Column="1" Content="3 hr" GroupName="DurationBoxes"/>
+                </Grid>
+
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Loop Speed (time per image)" Margin="0,12,0,0"/>
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="LoopTimerRadioButton1" Grid.Column="0" Content="0.1 sec" GroupName="LoopTimerBoxes"/>
+                    <RadioButton x:Name="LoopTimerRadioButton2" Grid.Column="1" Content="0.5 sec" GroupName="LoopTimerBoxes" IsChecked="True"/>
+                    <RadioButton x:Name="LoopTimerRadioButton3" Grid.Column="2" Content="1 sec" GroupName="LoopTimerBoxes"/>
+                </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="2" Margin="19,9.5,19,0">
-            <!-- Section 2 header -->
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" />
-            <!-- Section 2 body -->
-            <Grid Margin="0,17,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <RadioButton x:Name="DurationRadioButton1" Grid.Column="0" Content="1 hr" GroupName="DurationBoxes"/>
-                <RadioButton x:Name="DurationRadioButton2" Grid.Column="1" Content="3 hr" GroupName="DurationBoxes"/>
-            </Grid>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Margin="19,9.5,19,0">
-            <!-- Section 3 header -->
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Loop Speed (time per image)" />
-            <!-- Section 3 body -->
-            <Grid Margin="0,17,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <RadioButton x:Name="LoopTimerRadioButton1" Grid.Column="0" Content="0.1 sec" GroupName="LoopTimerBoxes"/>
-                <RadioButton x:Name="LoopTimerRadioButton2" Grid.Column="1" Content="0.5 sec" GroupName="LoopTimerBoxes"/>
-                <RadioButton x:Name="LoopTimerRadioButton3" Grid.Column="2" Content="1 sec" GroupName="LoopTimerBoxes"/>
-            </Grid>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
