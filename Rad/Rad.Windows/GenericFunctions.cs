@@ -157,12 +157,6 @@ static class GenericCodeClass
         
         FileNames.Clear();
 
-        //if (LightningDataSelected == true)
-        //{
-        //    GenericCodeClass.GetWeatherDataURLs(FileNames, 6);
-        //    return;
-        //}
-
         if (Client == null)
             Client = new HttpClient();
 
@@ -173,37 +167,7 @@ static class GenericCodeClass
         DateTime StartOfYearDate = new DateTime(CurrDateTime.Year - 1, 12, 31);
         DateTime StartDateTime = CurrDateTime.Subtract(new TimeSpan(DownloadPeriod, 0, 0));    //Subtract 3 hours from the Current Time
         TimeSpan NoOfDays = CurrDateTime.Subtract(StartOfYearDate);
-
-        //if (StartDateTime.Year != CurrDateTime.Year)
-        //    RegExpString = RegExpString + "(" + CurrDateTime.Year.ToString() + "|" + StartDateTime.Year.ToString() + ")";
-        //else
-        //    RegExpString = RegExpString + CurrDateTime.Year.ToString();
-
-        //if (StartDateTime.Day != CurrDateTime.Day)
-        //{
-        //    RegExpString = RegExpString + "(" + NoOfDays.Days.ToString() + "|";
-        //    NoOfDays = StartDateTime.Subtract(StartOfYearDate);
-        //    RegExpString = RegExpString + NoOfDays.Days.ToString() + ")_(";
-        //}
-        //else
-        //    RegExpString = RegExpString + NoOfDays.Days.ToString() + "_(";
-
-        //if (StartDateTime.Hour > CurrDateTime.Hour)  //When the start and current time are on either side of midnight
-        //{
-        //    for (i = StartDateTime.Hour; i <= 23; i++)
-        //        RegExpString = RegExpString + i.ToString("D2") + "|";
-
-        //    for (i = 0; i < CurrDateTime.Hour; i++)
-        //        RegExpString = RegExpString + i.ToString("D2") + "|";
-        //}
-        //else
-        //{
-        //    for (i = StartDateTime.Hour; i < CurrDateTime.Hour; i++)
-        //        RegExpString = RegExpString + i.ToString("D2") + "|";
-        //}
-
-        //RegExpString = RegExpString + CurrDateTime.Hour.ToString("D2") + ")[0-9][0-9]vis.jpg\\s*<";
-
+        
         StartDateTimeString = StartDateTime.Year.ToString() + StartDateTime.Month.ToString("D2") +StartDateTime.Day.ToString("D2") + StartDateTime.Hour.ToString("D2") + StartDateTime.Minute.ToString("D2")
             + "_" + HomeStationCode + "_" + RadarType + "_" + PrecipitationType + ".gif";
 
