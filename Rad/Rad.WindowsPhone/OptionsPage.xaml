@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Unloaded="OptionsPage_Unloaded">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="LayoutRoot">
 
@@ -28,24 +28,23 @@
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
-        <ScrollViewer Grid.Row="1" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" Padding="0,0,0,0">
-        <StackPanel Grid.Row="1" Margin="19,9.5,19,0">
-            
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Station" />
-            <ComboBox x:Name="StationComboBox" Margin="0,0,0,0" Padding="0,0,27,0" Width="auto" SelectionChanged="StationComboBox_SelectionChanged" SelectedIndex="0">
-                <x:String>Alberta</x:String>
-                <x:String>British Columbia</x:String>
-                <x:String>Manitoba</x:String>
-                <x:String>New Brunswick</x:String>
-                <x:String>Newfoundland &amp; Labrador</x:String>
-                <x:String>Ontario</x:String>
-                <x:String>Quebec</x:String>
-                <x:String>Saskatchewan</x:String>
-            </ComboBox>
-            <ComboBox >
-            </ComboBox>
-            
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Radar Product" Margin="0,12,0,0"/>
+        <ScrollViewer VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden" Padding="0,0,0,0" Margin="0,63,0,66" Grid.RowSpan="2">
+            <StackPanel Grid.Row="1" Margin="19,9.5,19,0">
+
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Station" />
+                <ComboBox x:Name="ProvinceComboBox" Margin="0,0,0,0" Padding="0,0,27,0" Width="auto" SelectionChanged="ProvinceComboBox_SelectionChanged" SelectedIndex="0">
+                    <x:String>Alberta</x:String>
+                    <x:String>British Columbia</x:String>
+                    <x:String>Manitoba</x:String>
+                    <x:String>New Brunswick</x:String>
+                    <x:String>Newfoundland &amp; Labrador</x:String>
+                    <x:String>Ontario</x:String>
+                    <x:String>Quebec</x:String>
+                    <x:String>Saskatchewan</x:String>
+                </ComboBox>
+                <ComboBox x:Name="StationComboBox" />
+
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Radar Product" Margin="0,12,0,0"/>
                 <Grid Margin="0,0,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -103,7 +102,7 @@
                     <RadioButton x:Name="LoopTimerRadioButton2" Grid.Column="1" Content="0.5 sec" GroupName="LoopTimerBoxes" IsChecked="True"/>
                     <RadioButton x:Name="LoopTimerRadioButton3" Grid.Column="2" Content="1 sec" GroupName="LoopTimerBoxes"/>
                 </Grid>
-        </StackPanel>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

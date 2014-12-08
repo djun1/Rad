@@ -14,8 +14,8 @@ static class GenericCodeClass
 {
     private static TimeSpan LoopTimerInterval = new TimeSpan(0,0,0,0,500); //Loop timer interval in seconds
     private static TimeSpan DownloadTimerInterval = new TimeSpan(0,15,0); //Download time interval in minutes
-    private static string HomeStationURL = "http://www.ssd.noaa.gov/goes/west/wfo/sew/img/";
-    private static string HomeStationString ="Seattle";
+    private static string HomeStationURL = "http://dd.weatheroffice.gc.ca/radar/CAPPI/GIF/WHK/";
+    private static string HomeStationString ="Edmonton";
     private static bool IsHomeStationChanged = false;
     private static bool IsECLightningDataSelected = false;
     private static HttpClient Client;
@@ -24,6 +24,10 @@ static class GenericCodeClass
     public static List<string> ExistingFiles = new List<string>();
     public static bool IsLoopPaused = false;
     public static bool IsAppResuming = false;
+    private static string PrecipitationType = "SNOW";
+    private static string RadarType = "CAPPI";
+    private static string HomeStationCode = "WHK";
+    private static string HomeProvince = "Alberta";
 
     //Provide access to private property specifying Loop timer Interval
     public static TimeSpan LoopInterval
@@ -78,6 +82,34 @@ static class GenericCodeClass
         set { IsECLightningDataSelected = value; }
     }
 
+    //Provide access to private property specifying the type of precipitation (SNOW/RAIN)
+    public static string PrecipitationTypeString
+    {
+        get { return PrecipitationType; }
+        set { PrecipitationType = value; }
+    }
+
+    //Provide access to private property specifying the type of radar (CAPPI/PRECIPET)
+    public static string RadarTypeString
+    {
+        get { return RadarType; }
+        set { RadarType = value; }
+    }
+
+    //Provide access to private property specifying the home station code
+    public static string HomeStationCodeString
+    {
+        get { return HomeStationCode; }
+        set { HomeStationCode = value; }
+    }
+
+    //Provide access to private property specifying the home province
+    public static string HomeProvinceName
+    {
+        get { return HomeProvince; }
+        set { HomeProvince = value; }
+    }
+
     public static DateTime GetDateTimeFromFile(string Filename)
     {
         DateTime LocalDateTime;
@@ -102,9 +134,7 @@ static class GenericCodeClass
             Day =  Filename.Substring(4,3);
             LocalDateTime = new DateTime(Convert.ToInt32(Year) - 1, 12, 31, Convert.ToInt32(Time.Substring(0, 2)), Convert.ToInt32(Time.Substring(2, 2)), 0);
             LocalDateTime = LocalDateTime.AddDays(Convert.ToDouble(Day)).ToLocalTime();
-        }
-        
-        
+        }       
         return LocalDateTime;
     }
 
@@ -112,8 +142,8 @@ static class GenericCodeClass
     {
         var URI = new Uri(HomeStationURL);
         string StartDateTimeString;
-        int i;
         Regex RegExp;
+        string RegExpString;
 
         ExistingFiles.Clear();
 
@@ -127,12 +157,6 @@ static class GenericCodeClass
         
         FileNames.Clear();
 
-        if (LightningDataSelected == true)
-        {
-            GenericCodeClass.GetWeatherDataURLs(FileNames, 6);
-            return;
-        }
-
         if (Client == null)
             Client = new HttpClient();
 
@@ -144,41 +168,28 @@ static class GenericCodeClass
         DateTime StartDateTime = CurrDateTime.Subtract(new TimeSpan(DownloadPeriod, 0, 0));    //Subtract 3 hours from the Current Time
         TimeSpan NoOfDays = CurrDateTime.Subtract(StartOfYearDate);
 
-        //if (StartDateTime.Year != CurrDateTime.Year)
-        //    RegExpString = RegExpString + "(" + CurrDateTime.Year.ToString() + "|" + StartDateTime.Year.ToString() + ")";
-        //else
-        //    RegExpString = RegExpString + CurrDateTime.Year.ToString();
+        StartDateTimeString = StartDateTime.Year.ToString() + StartDateTime.Month.ToString("D2") +StartDateTime.Day.ToString("D2") + StartDateTime.Hour.ToString("D2") + StartDateTime.Minute.ToString("D2")
+            + "_" + HomeStationCode + "_" + RadarType + "_" + PrecipitationType + ".gif";
 
-        //if (StartDateTime.Day != CurrDateTime.Day)
-        //{
-        //    RegExpString = RegExpString + "(" + NoOfDays.Days.ToString() + "|";
-        //    NoOfDays = StartDateTime.Subtract(StartOfYearDate);
-        //    RegExpString = RegExpString + NoOfDays.Days.ToString() + ")_(";
-        //}
-        //else
-        //    RegExpString = RegExpString + NoOfDays.Days.ToString() + "_(";
+        RegExpString = ">[0-9]+_[A-Z]+_" + RadarType + "_" + PrecipitationType + ".gif<";
 
-        //if (StartDateTime.Hour > CurrDateTime.Hour)  //When the start and current time are on either side of midnight
-        //{
-        //    for (i = StartDateTime.Hour; i <= 23; i++)
-        //        RegExpString = RegExpString + i.ToString("D2") + "|";
-
-        //    for (i = 0; i < CurrDateTime.Hour; i++)
-        //        RegExpString = RegExpString + i.ToString("D2") + "|";
-        //}
-        //else
-        //{
-        //    for (i = StartDateTime.Hour; i < CurrDateTime.Hour; i++)
-        //        RegExpString = RegExpString + i.ToString("D2") + "|";
-        //}
-
-        //RegExpString = RegExpString + CurrDateTime.Hour.ToString("D2") + ")[0-9][0-9]vis.jpg\\s*<";
-
-        StartDateTimeString = StartDateTime.Year.ToString() + StartDateTime.Subtract(StartOfYearDate).Days.ToString()
-            + "_" + StartDateTime.Hour.ToString("D2") + StartDateTime.Minute.ToString("D2") + "vis.jpg";
+        if (RadarType.Equals("CAPPI"))
+        {
+            if(PrecipitationType.Equals("SNOW"))
+            {
+                StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 8, "1.0_");
+                RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.0_");
+            }
+            else
+            {
+                StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 8, "1.5_");
+                RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.5_");
+            }
+            
+        }            
         
         FileNames.Add(StartDateTimeString);
-        RegExp = new Regex(">[0-9]+_[0-9]+vis.jpg<");
+        RegExp = new Regex(RegExpString);
 
         try
         {
@@ -215,7 +226,7 @@ static class GenericCodeClass
         }
         else
         {
-            //return some sort of error code?
+            //return some sort of error code? Is it good to clear the StartFileName from the Filenames list?
         }
     }
 
