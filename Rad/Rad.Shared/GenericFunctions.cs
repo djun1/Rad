@@ -15,12 +15,12 @@ static class GenericCodeClass
     private static TimeSpan LoopTimerInterval = new TimeSpan(0,0,0,0,500); //Loop timer interval in seconds
     private static TimeSpan DownloadTimerInterval = new TimeSpan(0,15,0); //Download time interval in minutes
     private static string HomeStationURL = "http://dd.weatheroffice.gc.ca/radar/CAPPI/GIF/WHK/";
-    private static string HomeStationString ="Edmonton";
+    private static string HomeStationString ="Calgary";
     private static bool IsHomeStationChanged = false;
     private static bool IsECLightningDataSelected = false;
     private static HttpClient Client;
     private static HttpResponseMessage Message;
-    private static int DownloadPeriod = 3;
+    private static int DownloadPeriod = 1;  //Change this value to set the time period for which images are downloaded (1h or 3h)
     public static List<string> ExistingFiles = new List<string>();
     public static bool IsLoopPaused = false;
     public static bool IsAppResuming = false;
@@ -119,22 +119,14 @@ static class GenericCodeClass
         string Day;
         string Month;
 
-        if(Filename.EndsWith(".png"))	//Extract date from Env. Canada lightning data image file name
-        {
-            Time = Filename.Substring(12, 4);
-            Year = Filename.Substring(4,4);
-            Day =  Filename.Substring(10,2);
-            Month = Filename.Substring(8,2);
-            LocalDateTime = new DateTime(Convert.ToInt32(Year), Convert.ToInt32(Month), Convert.ToInt32(Day), Convert.ToInt32(Time.Substring(0, 2)), Convert.ToInt32(Time.Substring(2, 2)), 0);
-        }
-        else	//Extract date from NOAA satellite data image file name
-        {
-            Time = Filename.Substring(8, 4);
-            Year = Filename.Substring(0,4);
-            Day =  Filename.Substring(4,3);
-            LocalDateTime = new DateTime(Convert.ToInt32(Year) - 1, 12, 31, Convert.ToInt32(Time.Substring(0, 2)), Convert.ToInt32(Time.Substring(2, 2)), 0);
-            LocalDateTime = LocalDateTime.AddDays(Convert.ToDouble(Day)).ToLocalTime();
-        }       
+        Time = Filename.Substring(8, 4);
+        Year = Filename.Substring(0, 4);
+        Day = Filename.Substring(6, 2);
+        Month = Filename.Substring(4, 2);
+        LocalDateTime = new DateTime(Convert.ToInt32(Year), Convert.ToInt32(Month), Convert.ToInt32(Day),
+            Convert.ToInt32(Time.Substring(0, 2)), Convert.ToInt32(Time.Substring(2, 2)), 0);
+        LocalDateTime = LocalDateTime.ToLocalTime();
+
         return LocalDateTime;
     }
 

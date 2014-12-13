@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ProvinceCities>
+  <Province Name="Alberta">
+    <City>Edmonton</City>
+    <City>Cold Lake</City>
+    <City>Grande Prairie</City>
+    <City>Medicine Hat</City>
+    <City>Calgary</City>
+  </Province>
+
+  <Province Name="British Columbia">
+    <City>Vancouver</City>
+    <City>Prince George</City>
+    <City>Kelowna</City>
+    <City>Victoria</City>
+  </Province>
+
+  <Province Name="Manitoba">
+    <City>Brandon</City>
+    <City>Winnipeg</City>
+  </Province>
+
+  <Province Name="New Brunswick">
+    <City>Moncton</City>
+  </Province>
+
+  <Province Name="Newfoundland">
+    <City>St. John’s</City>
+    <City>Corner Brook</City>
+  </Province>
+
+  <Province Name="Ontario">
+    <City>Sudbury</City>
+    <City>Sault Ste. Marie</City>
+    <City>Toronto</City>
+    <City>London</City>
+    <City>Dryden</City>
+    <City>Ottawa</City>
+    <City>Thunder Bay</City>
+    <City>Timmins</City>
+  </Province>
+
+  <Province Name="Quebec">
+    <City>Chicoutimi</City>
+    <City>Montreal</City>
+    <City>Quebec City</City>
+    <City>Rimouski</City>
+    <City>Val d’Or</City>
+  </Province>
+
+  <Province Name="Saskatchewan">
+    <City>Regina</City>
+    <City>Saskatoon</City>
+  </Province>
+</ProvinceCities>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Cities>
+<City Name ="Edmonton">WHK</City>
+<City Name ="Cold Lake">WHN</City>
+<City Name ="Calgary">XSM</City>
+<City Name ="Grande Prairie">WWW</City>
+<City Name ="Medicine Hat">XBU</City>
+
+<City Name ="Vancouver">WUJ</City>
+<City Name ="Victoria">XSI</City>
+<City Name ="Kelowna">XSS</City>
+<City Name ="Prince George">XPG</City>
+
+<City Name ="Sudbury">WHK</City>
+<City Name ="Sault Ste. Marie">WBI</City>
+<City Name ="Toronto">WKR</City>
+<City Name ="London">WSO</City>
+<City Name ="Dryden">XDR</City>
+<City Name ="Ottawa">XFT</City>
+<City Name ="Timmins">XTI</City>
+<City Name ="Thunder Bay">XNI</City>
+
+<City Name ="Chicoutimi">WMB</City>
+<City Name ="Montreal">WMN</City>
+<City Name ="Quebec City">WVY</City>
+
+<City Name ="Rimouski">XAM</City>
+<City Name ="Val d’Or">XLA</City>
+
+<City Name ="St. John’s">WTP</City>
+<City Name ="Corner Brook">XME</City>
+
+<City Name ="Regina">XBE</City>
+<City Name ="Saskatoon">XRA</City>
+
+<City Name ="Winnipeg">XWL</City>
+<City Name ="Brandon">XWL</City>
+
+<City Name ="Halifax">XGO</City>
+<City Name ="Sydney">XMB</City>
+
+<City Name ="Moncton">XNC</City>
+</Cities>

@@ -175,18 +175,10 @@ namespace Rad
         private void PlayPauseButton_Click(object sender, TappedRoutedEventArgs e)
         {
             if (GenericCodeClass.IsLoopPaused == false)
-            {
                 LoopTimer.Stop();
-                //PlayPauseButton.Icon = new SymbolIcon(Symbol.Play);                
-            }
             else
-            {
-                //PlayPauseButton.Icon = new SymbolIcon(Symbol.Pause);
                 LoopTimer.Start();
-            }
 
-            //NextButton.IsEnabled = !NextButton.IsEnabled;
-            //PrevButton.IsEnabled = !PrevButton.IsEnabled;
             GenericCodeClass.IsLoopPaused = !GenericCodeClass.IsLoopPaused;
             SetNavigationButtonState(GenericCodeClass.IsLoopPaused,true);
         }
@@ -232,7 +224,7 @@ namespace Rad
             FileDownloadProgBar.Maximum = Files.Count;
             FileDownloadProgBar.Minimum = 0;
             FileDownloadProgBar.Value = 0;
-            //SetNavigationButtonState(GenericCodeClass.IsLoopPaused, false);
+            
 
             for (i = 0; i < Files.Count; i++)
             {
@@ -252,7 +244,7 @@ namespace Rad
                     ImgBox.Source = await GenericCodeClass.GetBitmapImage(ImageFolder, Files[i]);
                     DownloadedFiles += 1;
                     FileDownloadProgBar.Value += 1;
-                    StatusBox.Text += "Finished.";
+                    StatusBox.Text += " Finished.";
                 }
             }
 
@@ -278,7 +270,7 @@ namespace Rad
             if (Files.Count != 0 && ImageIndex >= 0 && ImageIndex <= Files.Count)
             {
                 DateTime LocalTime = GenericCodeClass.GetDateTimeFromFile(Files[ImageIndex]);
-                StatusBox.Text = LocalTime.ToString("MMM dd HH:mm") + "   " + (ImageIndex + 1).ToString() + "/" + Files.Count.ToString();
+                StatusBox.Text = LocalTime.ToString("MMM dd HH:mm") + "   " + (ImageIndex + 1).ToString() + "/" + Files.Count.ToString() + " " + GenericCodeClass.RadarTypeString + "-" + GenericCodeClass.PrecipitationTypeString;
                 ImgBox.Source = await GenericCodeClass.GetBitmapImage(ImageFolder, Files[ImageIndex]);
             }
             else
@@ -381,10 +373,6 @@ namespace Rad
             }
 
             if (DownloadFilesTask.IsFaulted)
-            //{
-            //    await DownloadFilesTask; //maybe used the status field to check whether the task is worth waiting for
-            //}
-            //else
             {
                 //Show Error Message
                 Uri ImageUri = new Uri("ms-appx:///Assets/Error.png");

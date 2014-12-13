@@ -85,18 +85,7 @@ namespace Rad
 
             GetFileNamesTask = GenericCodeClass.GetListOfLatestFiles(Files);
             SetNavigationButtonState(GenericCodeClass.IsLoopPaused, false);
-            //if (GenericCodeClass.IsLoopPaused == false)
-            //{
-            //    PlayPauseButton.Icon = new SymbolIcon(Symbol.Pause);
-            //}
-            //else
-            //{
-            //    PlayPauseButton.Icon = new SymbolIcon(Symbol.Play);
-            //}
-
-            //NextButton.IsEnabled = GenericCodeClass.IsLoopPaused;
-            //PrevButton.IsEnabled = GenericCodeClass.IsLoopPaused;
-
+            
             StationBox.Text = GenericCodeClass.HomeStationName;
 
             if(GenericCodeClass.HomeStationChanged == true)
@@ -184,18 +173,10 @@ namespace Rad
         private void PlayPauseButton_Click(object sender, TappedRoutedEventArgs e)
         {
             if (GenericCodeClass.IsLoopPaused == false)
-            {
                 LoopTimer.Stop();
-                //PlayPauseButton.Icon = new SymbolIcon(Symbol.Play);                
-            }
             else
-            {
-                //PlayPauseButton.Icon = new SymbolIcon(Symbol.Pause);
                 LoopTimer.Start();
-            }
 
-            //NextButton.IsEnabled = !NextButton.IsEnabled;
-            //PrevButton.IsEnabled = !PrevButton.IsEnabled;
             GenericCodeClass.IsLoopPaused = !GenericCodeClass.IsLoopPaused;
             SetNavigationButtonState(GenericCodeClass.IsLoopPaused, true);
             
@@ -287,7 +268,7 @@ namespace Rad
             if (Files.Count != 0 && ImageIndex >= 0 && ImageIndex <= Files.Count)
             {
                 DateTime LocalTime = GenericCodeClass.GetDateTimeFromFile(Files[ImageIndex]);
-                StatusBox.Text = LocalTime.ToString("MMM dd HH:mm") + "   " + (ImageIndex + 1).ToString() + "/" + Files.Count.ToString();
+                StatusBox.Text = LocalTime.ToString("MMM dd HH:mm") + "   " + (ImageIndex + 1).ToString() + "/" + Files.Count.ToString() + " " + GenericCodeClass.RadarTypeString + "-" + GenericCodeClass.PrecipitationTypeString;
                 ImgBox.Source = await GenericCodeClass.GetBitmapImage(ImageFolder, Files[ImageIndex]);            
             }
             else

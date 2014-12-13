@@ -24,18 +24,21 @@ namespace Rad
         private static String ChosenCityURL;
         private static String ChosenRadarType;
         private static String ChosenPrecipitationType;
+        private static XMLParserClass ProvincialCityXML = new XMLParserClass("ProvinceCities.xml");
+        private static XMLParserClass CityCodeXML = new XMLParserClass("CityCodes.xml");
 
         public OptionsPage()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
         }
 
         private void ProvinceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ProvinceComboBox != null)
             {
-                PopulateStationBox(ProvinceComboBox.SelectedIndex);                
+                PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
             }
+
         }
 
         private void OptionsPage_BackClick(object sender, BackClickEventArgs e)
@@ -88,180 +91,14 @@ namespace Rad
             {
                 if (StationComboBox != null)
                 {
-                    switch (StationComboBox.Items[StationComboBox.SelectedIndex].ToString())
-                    {
-                        
-                        case "Edmonton":
-                            GenericCodeClass.HomeStationCodeString = "WHK"; //Change this to ChosenCityCode?
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WHK/"; //Change this to ChosenCityCode?
-                            break;
-                        case "Cold Lake":
-                            GenericCodeClass.HomeStationCodeString = "WHN";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WHN/";
-                            //GenericCodeClass.HomeStation = "WHN";
-                            break;
-                        case "Calgary":
-                            GenericCodeClass.HomeStationCodeString = "XSM";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XSM/";
-                            //GenericCodeClass.HomeStationCodeString = "XSM";
-                            break;
-                        case "Grande Prairie":
-                            GenericCodeClass.HomeStationCodeString = "WWW";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WWW/";
-                            //GenericCodeClass.HomeStationCodeString = "WWW";
-                            break;
-                        case "Medicine Hat":
-                            GenericCodeClass.HomeStationCodeString = "XBU";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XBU/";
-                            //GenericCodeClass.HomeStationCodeString = "XBU";
-                            break;
-                        
-                        case "Vancouver":
-                            GenericCodeClass.HomeStationCodeString = "WUJ";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WUJ/";
-                            //GenericCodeClass.HomeStationCodeString = "WUJ";
-                            break;
-                        case "Victoria":
-                            GenericCodeClass.HomeStationCodeString = "XSI";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XSI/";
-                            //GenericCodeClass.HomeStationCodeString = "XSI";
-                            break;
-                        case "Kelowna":
-                            GenericCodeClass.HomeStationCodeString = "XSS";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XSS/";
-                            //GenericCodeClass.HomeStationCodeString = "XSS";
-                            break;
-                        case "Prince George":
-                            GenericCodeClass.HomeStationCodeString = "XPG";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XPG/";
-                            //GenericCodeClass.HomeStationCodeString = "XPG";
-                            break;
-                        
-                        case "Sudbury":
-                            GenericCodeClass.HomeStationCodeString = "WHK";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WHK/";
-                            //GenericCodeClass.HomeStationCodeString = "WHK";
-                            break;
-                        case "Sault Ste. Marie":
-                            GenericCodeClass.HomeStationCodeString = "WBI";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WBI/";
-                            //GenericCodeClass.HomeStationCodeString = "WBI";
-                            break;
-                        case "Toronto":
-                            GenericCodeClass.HomeStationCodeString = "WKR";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WKR/";
-                            //GenericCodeClass.HomeStationCodeString = "WKR";
-                            break;
-                        case "London":
-                            GenericCodeClass.HomeStationCodeString = "WSO";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WSO/";
-                            //GenericCodeClass.HomeStationCodeString = "WSO";
-                            break;
-                        case "Dryden":
-                            GenericCodeClass.HomeStationCodeString = "XDR";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XDR/";
-                            //GenericCodeClass.HomeStationCodeString = "XDR";
-                            break;
-                        case "Ottawa":
-                            GenericCodeClass.HomeStationCodeString = "XFT";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XFT/";
-                            //GenericCodeClass.HomeStationCodeString = "XFT";
-                            break;
-                        case "Timmins":
-                            GenericCodeClass.HomeStationCodeString = "XTI";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XTI/";
-                            //GenericCodeClass.HomeStationCodeString = "XTI";
-                            break;
-                        case "Thunder Bay":
-                            GenericCodeClass.HomeStationCodeString = "XNI";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XNI/";
-                            //GenericCodeClass.HomeStationCodeString = "XNI";
-                            break;
-
-                        case "Chicoutimi":
-                            GenericCodeClass.HomeStationCodeString = "WMB";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WMB/";
-                            //GenericCodeClass.HomeStationCodeString = "WMB";
-                            break;
-                        case "Montreal":
-                            GenericCodeClass.HomeStationCodeString = "WMN";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WMN/";
-                            //GenericCodeClass.HomeStationCodeString = "WMN";
-                            break;
-                        case "Quebec City":
-                            GenericCodeClass.HomeStationCodeString = "WVY";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WVY/";
-                            //GenericCodeClass.HomeStationCodeString = "WVY";
-                            break;
-
-                        case "Rimouski":
-                            GenericCodeClass.HomeStationCodeString = "XAM";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XAM/";
-                            //GenericCodeClass.HomeStationCodeString = "XAM";
-                            break;
-                        case "Val d’Or":
-                            GenericCodeClass.HomeStationCodeString = "XLA";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XLA/";
-                            //GenericCodeClass.HomeStationCodeString = "XLA";
-                            break;
-
-                        case "St. John’s":
-                            GenericCodeClass.HomeStationCodeString = "WTP";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "WTP/";
-                            //GenericCodeClass.HomeStationCodeString = "WTP";
-                            break;
-                        case "Corner Brook":
-                            GenericCodeClass.HomeStationCodeString = "XME";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XME/";
-                            //GenericCodeClass.HomeStationCodeString = "XME";
-                            break;
-
-                        case "Regina":
-                            GenericCodeClass.HomeStationCodeString = "XBE";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XBE/";
-                            //GenericCodeClass.HomeStationCodeString = "XBE";
-                            break;
-                        case "Saskatoon":
-                            GenericCodeClass.HomeStationCodeString = "XRA";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XRA/";
-                            //GenericCodeClass.HomeStationCodeString = "XRA";
-                            break;
-
-                        case "Winnipeg":
-                            GenericCodeClass.HomeStationCodeString = "XWL";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XWL/";
-                            //GenericCodeClass.HomeStationCodeString = "XWL";
-                            break;
-                        case "Brandon":
-                            GenericCodeClass.HomeStationCodeString = "XWL";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XFW/";
-                            //GenericCodeClass.HomeStationCodeString = "XFW";
-                            break;
-
-                        case "Halifax":
-                            GenericCodeClass.HomeStationCodeString = "XGO";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XGO/";
-                            //GenericCodeClass.HomeStationCodeString = "XGO";
-                            break;
-                        case "Sydney":
-                            GenericCodeClass.HomeStationCodeString = "XMB";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XMB/";
-                            //GenericCodeClass.HomeStationCodeString = "XMB";
-                            break;
-
-                        case "Moncton":
-                            GenericCodeClass.HomeStationCodeString = "XNC";
-                            GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + "XNC/";
-                            //GenericCodeClass.HomeStationCodeString = "XNC";
-                            break;
-                    }
+                    GenericCodeClass.HomeStationCodeString = CityCodeXML.GetCityCode(StationComboBox.Items[StationComboBox.SelectedIndex].ToString()); //Change this to ChosenCityCode?
+                    GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + GenericCodeClass.HomeStationCodeString + "/"; //Change this to ChosenCityCode?
                 }
 
                 GenericCodeClass.HomeStationName = StationComboBox.Items[StationComboBox.SelectedIndex].ToString();
                 GenericCodeClass.HomeProvinceName = ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString();
                 GenericCodeClass.RadarTypeString = ChosenRadarType;
-                GenericCodeClass.PrecipitationTypeString = ChosenPrecipitationType;
-                //GenericCodeClass.HomeStation = ChosenCityURL;   //check for null?
+                GenericCodeClass.PrecipitationTypeString = ChosenPrecipitationType;              
             }
             
             //Better to check for existing download intervals before setting new times?
@@ -331,61 +168,28 @@ namespace Rad
             }
 
             ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
-            PopulateStationBox(ProvinceComboBox.SelectedIndex);
+            PopulateStationBox(ProvinceComboBox.SelectedIndex,ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
             StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
         }
 
-        private void PopulateStationBox(int ProvinceBoxIndex)
+        private void PopulateStationBox(int ProvinceBoxIndex, string ProvinceName)
         {
+
             if(StationComboBox != null)
             {
-                StationComboBox.Items.Clear();
-                switch (ProvinceBoxIndex)
+                List<string> CityNames = new List<string>();
+
+                if(ProvinceName.Contains('&'))
+                    ProvinceName = ProvinceName.Substring(0, 12);
+
+                ProvincialCityXML.ReadCitiesInProvince(ProvinceName, CityNames);
+                if (StationComboBox != null)
                 {
-                    case 0: //AB
-                        StationComboBox.Items.Add("Edmonton");
-                        StationComboBox.Items.Add("Cold Lake");
-                        StationComboBox.Items.Add("Grande Prairie");
-                        StationComboBox.Items.Add("Medicine Hat");
-                        StationComboBox.Items.Add("Calgary");
-                        break;
-                    case 1: //BC
-                        StationComboBox.Items.Add("Vancouver");
-                        StationComboBox.Items.Add("Prince George");
-                        StationComboBox.Items.Add("Kelowna");
-                        break;
-                    case 2://MB
-                        StationComboBox.Items.Add("Brandon");
-                        StationComboBox.Items.Add("Winnipeg");
-                        break;
-                    case 3://NB
-                        StationComboBox.Items.Add("Moncton");
-                        break;
-                    case 4://NL
-                        StationComboBox.Items.Add("St. John’s");
-                        StationComboBox.Items.Add("Corner Brook");
-                        break;
-                    case 5://ON
-                        StationComboBox.Items.Add("Sudbury");
-                        StationComboBox.Items.Add("Sault Ste. Marie");
-                        StationComboBox.Items.Add("Toronto");
-                        StationComboBox.Items.Add("London");
-                        StationComboBox.Items.Add("Dryden");
-                        StationComboBox.Items.Add("Ottawa");
-                        StationComboBox.Items.Add("Thunder Bay");
-                        StationComboBox.Items.Add("Timmins");
-                        break;
-                    case 6://QC
-                        StationComboBox.Items.Add("Chicoutimi");
-                        StationComboBox.Items.Add("Montreal");
-                        StationComboBox.Items.Add("Quebec City");
-                        StationComboBox.Items.Add("Rimouski");
-                        StationComboBox.Items.Add("Val d’Or");
-                        break;
-                    case 7://SK
-                        StationComboBox.Items.Add("Regina");
-                        StationComboBox.Items.Add("Saskatoon");
-                        break;
+                    StationComboBox.Items.Clear();
+                    foreach (string City in CityNames)
+                    {
+                        StationComboBox.Items.Add(City);
+                    }
                 }
                 StationComboBox.SelectedIndex = 0;
             }            
