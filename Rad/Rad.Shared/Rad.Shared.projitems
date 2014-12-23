@@ -16,10 +16,19 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)GenericFunctions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OverlaidImages.xaml.cs">
+      <DependentUpon>OverlaidImages.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)XMLParserClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)CityCodes.xml" />
     <Content Include="$(MSBuildThisFileDirectory)ProvinceCities.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)OverlaidImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

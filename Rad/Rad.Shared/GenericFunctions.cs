@@ -28,6 +28,10 @@ static class GenericCodeClass
     private static string RadarType = "CAPPI";
     private static string HomeStationCode = "WHK";
     private static string HomeProvince = "Alberta";
+    private static bool OverlayCities = false;
+    private static bool OverlayTowns = false;
+    private static bool OverlayRoads = false;
+    private static bool OverlayRoadNos = false;
 
     //Provide access to private property specifying Loop timer Interval
     public static TimeSpan LoopInterval
@@ -108,6 +112,30 @@ static class GenericCodeClass
     {
         get { return HomeProvince; }
         set { HomeProvince = value; }
+    }
+
+    public static bool CityOverlayFlag
+    {
+        get { return OverlayCities; }
+        set { OverlayCities = value; }
+    }
+
+    public static bool TownOverlayFlag
+    {
+        get { return OverlayTowns; }
+        set { OverlayTowns = value; }
+    }
+
+    public static bool RoadOverlayFlag
+    {
+        get { return OverlayRoads; }
+        set { OverlayRoads = value; }
+    }
+
+    public static bool RoadNoOverlayFlag
+    {
+        get { return OverlayRoadNos; }
+        set { OverlayRoadNos = value; }
     }
 
     public static DateTime GetDateTimeFromFile(string Filename)

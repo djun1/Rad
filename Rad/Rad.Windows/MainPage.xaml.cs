@@ -90,8 +90,9 @@ namespace Rad
         {
             Task GetFileNamesTask, DownloadFilesTask;
             var LoadingimageUri = new Uri("ms-appx:///Assets/Loading.png");
-            ImgBox.Source = new BitmapImage(LoadingimageUri);
+            ImgBox.ImgSource = new BitmapImage(LoadingimageUri);
 
+            LoadOverlayImages();
             SetNavigationButtonState(GenericCodeClass.IsLoopPaused, false);
             GetFileNamesTask = GenericCodeClass.GetListOfLatestFiles(Files);
             if(!GenericCodeClass.IsAppResuming)
@@ -121,15 +122,16 @@ namespace Rad
                     LoopTimer.Start();
                 DownloadTimer.Start();
                 SetNavigationButtonState(GenericCodeClass.IsLoopPaused,true);
+                SetOverlayVisibilities(false);
             }
             else
             {
                 //Show Error Message
                 Uri ImageUri = new Uri("ms-appx:///Assets/Error.png");
-                BitmapImage bitmap = ImgBox.Source as BitmapImage;
+                BitmapImage bitmap = ImgBox.ImgSource as BitmapImage;
 
                 if (bitmap != null && bitmap.UriSource.AbsoluteUri != "ms-appx:/Assets/Error.png")
-                    ImgBox.Source = new BitmapImage(ImageUri);
+                    ImgBox.ImgSource = new BitmapImage(ImageUri);
             }    
         }
 
@@ -241,7 +243,8 @@ namespace Rad
                 }
                 else
                 {
-                    ImgBox.Source = await GenericCodeClass.GetBitmapImage(ImageFolder, Files[i]);
+                    ImgBox.ImgSource = await GenericCodeClass.GetBitmapImage(ImageFolder, Files[i]);
+                    SetOverlayVisibilities(false);
                     DownloadedFiles += 1;
                     FileDownloadProgBar.Value += 1;
                     StatusBox.Text += " Finished.";
@@ -271,15 +274,15 @@ namespace Rad
             {
                 DateTime LocalTime = GenericCodeClass.GetDateTimeFromFile(Files[ImageIndex]);
                 StatusBox.Text = LocalTime.ToString("MMM dd HH:mm") + "   " + (ImageIndex + 1).ToString() + "/" + Files.Count.ToString() + " " + GenericCodeClass.RadarTypeString + "-" + GenericCodeClass.PrecipitationTypeString;
-                ImgBox.Source = await GenericCodeClass.GetBitmapImage(ImageFolder, Files[ImageIndex]);
+                ImgBox.ImgSource = await GenericCodeClass.GetBitmapImage(ImageFolder, Files[ImageIndex]);               
             }
             else
             {
                 Uri ImageUri = new Uri("ms-appx:///Assets/Error.png");
-                BitmapImage bitmap = ImgBox.Source as BitmapImage;
+                BitmapImage bitmap = ImgBox.ImgSource as BitmapImage;
 
                 if (bitmap != null && bitmap.UriSource.AbsoluteUri != "ms-appx:/Assets/Error.png")
-                    ImgBox.Source = new BitmapImage(ImageUri);
+                    ImgBox.ImgSource = new BitmapImage(ImageUri);
                 StatusBox.Text = "Error Downloading Images";
             }
 
@@ -339,25 +342,29 @@ namespace Rad
         {
             Task GetFileNamesTask, DeleteFilesTask, DownloadFilesTask;
             var LoadingimageUri = new Uri("ms-appx:///Assets/Loading.png");
+            
 
             SetNavigationButtonState(GenericCodeClass.IsLoopPaused, false);
 
             if(GenericCodeClass.IsLoopPaused == false)
                 LoopTimer.Stop();
 
-            ImgBox.Source = new BitmapImage(LoadingimageUri);
+             
+            ImgBox.ImgSource = new BitmapImage(LoadingimageUri);
 
             GetFileNamesTask = GenericCodeClass.GetListOfLatestFiles(Files);
 
             if (GenericCodeClass.HomeStationChanged == true)
             {
+                SetOverlayVisibilities(true);
+                LoadOverlayImages();
                 DeleteFilesTask = GenericCodeClass.DeleteAllFiles(ImageFolder);
                 StationBox.Text = GenericCodeClass.HomeStationName;
                 
-                
                 await DeleteFilesTask;
-                GenericCodeClass.HomeStationChanged = false;
+                //GenericCodeClass.HomeStationChanged = false;
             }
+
             await GetFileNamesTask;
             DownloadFilesTask = DownloadFiles();
 
@@ -376,19 +383,21 @@ namespace Rad
             {
                 //Show Error Message
                 Uri ImageUri = new Uri("ms-appx:///Assets/Error.png");
-                BitmapImage bitmap = ImgBox.Source as BitmapImage;
+                BitmapImage bitmap = ImgBox.ImgSource as BitmapImage;
 
                 if (bitmap != null && bitmap.UriSource.AbsoluteUri != "ms-appx:/Assets/Error.png")
-                    ImgBox.Source = new BitmapImage(ImageUri);
+                    ImgBox.ImgSource = new BitmapImage(ImageUri);
             }
             else
             {
                 SetNavigationButtonState(GenericCodeClass.IsLoopPaused, true);
+                if (GenericCodeClass.HomeStationChanged == false)
+                    SetOverlayVisibilities(false);
                 if (GenericCodeClass.IsLoopPaused == false)
                     LoopTimer.Start();
             }
 
-            
+            GenericCodeClass.HomeStationChanged = false;
 
             
         }
@@ -412,6 +421,47 @@ namespace Rad
             
         }
 
+        private void SetOverlayVisibilities(bool CollapseAll)
+        {
+            if(!CollapseAll)
+            {
+                if (GenericCodeClass.CityOverlayFlag)
+                    ImgBox.CitiesOverlayVisibility = Visibility.Visible;
+                else
+                    ImgBox.CitiesOverlayVisibility = Visibility.Collapsed;
+
+                if (GenericCodeClass.TownOverlayFlag)
+                    ImgBox.TownsOverlayVisibility = Visibility.Visible;
+                else
+                    ImgBox.TownsOverlayVisibility = Visibility.Collapsed;
+
+                if (GenericCodeClass.RoadOverlayFlag)
+                    ImgBox.RoadsOverlayVisibility = Visibility.Visible;
+                else
+                    ImgBox.RoadsOverlayVisibility = Visibility.Collapsed;
+
+                if (GenericCodeClass.RoadNoOverlayFlag)
+                    ImgBox.RoadNosOverlayVisibility = Visibility.Visible;
+                else
+                    ImgBox.RoadNosOverlayVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ImgBox.CitiesOverlayVisibility = Visibility.Collapsed;
+                ImgBox.TownsOverlayVisibility = Visibility.Collapsed;
+                ImgBox.RoadsOverlayVisibility = Visibility.Collapsed;
+                ImgBox.RoadNosOverlayVisibility = Visibility.Collapsed;
+            }            
+        }
+
+        private void LoadOverlayImages()
+        {
+            ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_towns.gif")); ;
+            ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
+            ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_roads.gif"));
+            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
+        }
+            
         //private void AdBox_ErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
         //{
         //    AdBox.Visibility = Visibility.Collapsed;
