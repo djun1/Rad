@@ -31,7 +31,7 @@ static class GenericCodeClass
     private static bool OverlayCities = true;
     private static bool OverlayTowns = false;
     private static bool OverlayRoads = true;
-    private static bool OverlayRoadNos = false;
+    private static bool OverlayRoadNos = true;
 
     //Provide access to private property specifying Loop timer Interval
     public static TimeSpan LoopInterval

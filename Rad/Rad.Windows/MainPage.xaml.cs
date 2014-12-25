@@ -459,8 +459,8 @@ namespace Rad
             ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_towns.gif")); ;
             ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
             ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_roads.gif"));
-            //ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
-            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/radar_circle.gif"));
+            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
+            //ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/radar_circle.gif"));
         }
             
         //private void AdBox_ErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)

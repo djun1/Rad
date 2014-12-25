@@ -151,6 +151,7 @@
     <Content Include="Assets\overlays\PNR\pnr_towns.gif" />
     <Content Include="Assets\overlays\PYR\pyr_towns.gif" />
     <Content Include="Assets\overlays\QUE\que_towns.gif" />
+    <Content Include="Assets\overlays\radar_circle.gif" />
     <Content Include="Assets\overlays\WBI\wbi_moretowns.gif" />
     <Content Include="Assets\overlays\WBI\wbi_numbers.gif" />
     <Content Include="Assets\overlays\WBI\wbi_roads.gif" />
