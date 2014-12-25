@@ -14,8 +14,8 @@ static class GenericCodeClass
 {
     private static TimeSpan LoopTimerInterval = new TimeSpan(0,0,0,0,500); //Loop timer interval in seconds
     private static TimeSpan DownloadTimerInterval = new TimeSpan(0,15,0); //Download time interval in minutes
-    private static string HomeStationURL = "http://dd.weatheroffice.gc.ca/radar/CAPPI/GIF/WHK/";
-    private static string HomeStationString ="Calgary";
+    private static string HomeStationURL = "http://dd.weatheroffice.gc.ca/radar/CAPPI/GIF/WUJ/";
+    private static string HomeStationString ="Vancouver";
     private static bool IsHomeStationChanged = false;
     private static bool IsECLightningDataSelected = false;
     private static HttpClient Client;
@@ -26,11 +26,11 @@ static class GenericCodeClass
     public static bool IsAppResuming = false;
     private static string PrecipitationType = "SNOW";
     private static string RadarType = "CAPPI";
-    private static string HomeStationCode = "WHK";
-    private static string HomeProvince = "Alberta";
-    private static bool OverlayCities = false;
+    private static string HomeStationCode = "WUJ";
+    private static string HomeProvince = "British Columbia";
+    private static bool OverlayCities = true;
     private static bool OverlayTowns = false;
-    private static bool OverlayRoads = false;
+    private static bool OverlayRoads = true;
     private static bool OverlayRoadNos = false;
 
     //Provide access to private property specifying Loop timer Interval

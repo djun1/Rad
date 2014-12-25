@@ -77,10 +77,10 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <CheckBox x:Name="CityCheckBox" Grid.Column="0" Grid.Row="0" Content="Cities"  />
+                <CheckBox x:Name="CityCheckBox" Grid.Column="0" Grid.Row="0" Content="Cities" IsChecked="True"/>
                 <CheckBox x:Name="TownCheckBox" Grid.Column="1" Grid.Row="0" Content="More Cities" />
-                <CheckBox x:Name="RoadCheckBox" Grid.Column="0" Grid.Row="1" Content="Roads" />
-                <CheckBox x:Name="RoadNoCheckBox" Grid.Column="1" Grid.Row="1" Content="Road Numbers" IsChecked="False" />
+                <CheckBox x:Name="RoadCheckBox" Grid.Column="0" Grid.Row="1" Content="Roads" IsChecked="True" />
+                <CheckBox x:Name="RoadNoCheckBox" Grid.Column="1" Grid.Row="1" Content="Road Numbers"  />
             </Grid>
         </StackPanel>
 
