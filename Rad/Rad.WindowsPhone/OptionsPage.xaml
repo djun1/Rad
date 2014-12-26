@@ -50,8 +50,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <RadioButton x:Name="ProductRadioButton1" Grid.Column="0" Content="PRECIPET" IsChecked="True" GroupName="ProductBoxes" />
-                    <RadioButton x:Name="ProductRadioButton2" Grid.Column="1" Content="CAPPI" GroupName="ProductBoxes"/>
+                    <RadioButton x:Name="ProductRadioButton1" Grid.Column="0" Content="PRECIPET" GroupName="ProductBoxes" />
+                    <RadioButton x:Name="ProductRadioButton2" Grid.Column="1" Content="CAPPI" GroupName="ProductBoxes" IsChecked="True"/>
                 </Grid>
 
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Precipitation Type" Margin="0,12,0,0"/>
@@ -60,8 +60,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <RadioButton x:Name="PrecipitationRadioButton1" Grid.Column="0" Content="Rain" IsChecked="True" GroupName="PrecipitationBoxes" />
-                    <RadioButton x:Name="PrecipitationRadioButton2" Grid.Column="1" Content="Snow" GroupName="PrecipitationBoxes"/>
+                    <RadioButton x:Name="PrecipitationRadioButton1" Grid.Column="0" Content="Rain" GroupName="PrecipitationBoxes" />
+                    <RadioButton x:Name="PrecipitationRadioButton2" Grid.Column="1" Content="Snow" GroupName="PrecipitationBoxes" IsChecked="True"/>
 
                 </Grid>
 
@@ -77,8 +77,8 @@
                     </Grid.RowDefinitions>
                     <CheckBox x:Name="CityCheckBox" Grid.Column="0" Grid.Row="0" Content="Cities"  />
                     <CheckBox x:Name="TownCheckBox" Grid.Column="1" Grid.Row="0" Content="More Cities" />
-                    <CheckBox x:Name="RoadCheckBox" Grid.Column="0" Grid.Row="1" Content="Roads" />
-                    <CheckBox x:Name="RoadNoCheckBox" Grid.Column="1" Grid.Row="1" Content="Road Numbers" />
+                    <CheckBox x:Name="RadarCircleCheckBox" Grid.Column="0" Grid.Row="1" Content="Radar Circles" />
+                    <CheckBox x:Name="RoadCheckBox" Grid.Column="1" Grid.Row="1" Content="Roads" />
                 </Grid>
 
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" Margin="0,12,0,0"/>

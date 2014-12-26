@@ -25,41 +25,39 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Title Panel -->
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="RADAR IMAGERY" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
             <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Hidden" >
                 <TextBlock x:Name="StationBox" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
             </ScrollViewer>
         </StackPanel>
+        
+        <!-- Loop controls and image # -->
+        <Grid Grid.Row="1" Margin="19,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <AppBarButton Grid.Column="0" Icon="Previous" x:Name="PrevButton" Tapped="PrevButton_Click" IsEnabled="False"/>
+            <AppBarButton Grid.Column="1" Icon="Pause" x:Name="PlayPauseButton" Tapped="PlayPauseButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <AppBarButton Grid.Column="2" Icon="Next" x:Name="NextButton" Tapped="NextButton_Click" IsEnabled="False" />
+            <TextBlock Grid.Column="3" x:Name="StatusBox" HorizontalAlignment="Left" FontSize="14" Margin="25,15,0,0" TextWrapping="Wrap" Width="150"/>
+            <ProgressBar Grid.Column="3" x:Name="FileDownloadProgBar" HorizontalAlignment="Left" Height="4" Width="150" Margin="25,36,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
+        </Grid>
 
         <!--TODO: Content should be placed within the following grid-->
-        <ScrollViewer Grid.Row="1" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden">
-            <Grid xmlns:src="using:Rad" Grid.Row="1" x:Name="ContentRoot" Margin="19,0,19,0">
-                <StackPanel>
-                    <Grid Height="70" Margin="-21,0,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <AppBarButton Grid.Column="0" Icon="Previous" x:Name="PrevButton" Tapped="PrevButton_Click" IsEnabled="False"/>
-                        <AppBarButton Grid.Column="1" Icon="Pause" x:Name="PlayPauseButton" Tapped="PlayPauseButton_Click" />
-                        <AppBarButton Grid.Column="2" Icon="Next" x:Name="NextButton" Tapped="NextButton_Click" IsEnabled="False"/>
-                        <TextBlock Grid.Column="3" x:Name="StatusBox" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" Margin="22,15,0,0" TextWrapping="Wrap" Width="170"/>
-                        <ProgressBar Grid.Column="3" x:Name="FileDownloadProgBar" HorizontalAlignment="Left" Height="6" Width="150" Margin="22,35,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-                    </Grid>
-                </StackPanel>
-                <StackPanel Margin="0,70,0,19">
-                    <ScrollViewer x:Name="ImgScrollViewer" ZoomMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" MinZoomFactor="0.6" MaxZoomFactor="3" Margin="0">
-                        <src:OverlaidImages x:Name="ImgBox" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    </ScrollViewer>
-                </StackPanel>
-            </Grid>
-        </ScrollViewer>
+        <Grid Grid.Row="2" xmlns:src="using:Rad" Margin="19,0,0,0">
+            <ScrollViewer x:Name="ImgScrollViewer" ZoomMode="Enabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" MinZoomFactor="0.6" MaxZoomFactor="3" Margin="0">
+                <src:OverlaidImages x:Name="ImgBox" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>
 

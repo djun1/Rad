@@ -122,7 +122,8 @@ namespace Rad
             CityCheckBox.IsChecked = GenericCodeClass.CityOverlayFlag;
             TownCheckBox.IsChecked = GenericCodeClass.TownOverlayFlag;
             RoadCheckBox.IsChecked = GenericCodeClass.RoadOverlayFlag;
-            RoadNoCheckBox.IsChecked = GenericCodeClass.RoadNoOverlayFlag;
+//            RoadNoCheckBox.IsChecked = GenericCodeClass.RoadNoOverlayFlag;
+            RadarCircleCheckBox.IsChecked = GenericCodeClass.RadarCircleOverlayFlag;
 
             ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
             PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
@@ -186,7 +187,8 @@ namespace Rad
             GenericCodeClass.CityOverlayFlag = (bool)CityCheckBox.IsChecked;
             GenericCodeClass.TownOverlayFlag = (bool)TownCheckBox.IsChecked;
             GenericCodeClass.RoadOverlayFlag = (bool)RoadCheckBox.IsChecked;
-            GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
+//            GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
+            GenericCodeClass.RadarCircleOverlayFlag = (bool)RadarCircleCheckBox.IsChecked;
         }
 
         #region NavigationHelper registration

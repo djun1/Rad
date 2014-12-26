@@ -360,10 +360,15 @@ namespace Rad
             else
                 ImgBox.RoadsOverlayVisibility = Visibility.Collapsed;
 
-            if (GenericCodeClass.RoadNoOverlayFlag)
-                ImgBox.RoadNosOverlayVisibility = Visibility.Visible;
+//            if (GenericCodeClass.RoadNoOverlayFlag)
+//                ImgBox.RoadNosOverlayVisibility = Visibility.Visible;
+//            else
+//                ImgBox.RoadNosOverlayVisibility = Visibility.Collapsed;
+
+            if (GenericCodeClass.RadarCircleOverlayFlag)
+                ImgBox.RadarCircleOverlayVisibility = Visibility.Visible;
             else
-                ImgBox.RoadNosOverlayVisibility = Visibility.Collapsed;
+                ImgBox.RadarCircleOverlayVisibility = Visibility.Collapsed;
         }
 
         private void LoadOverlayImages()
@@ -371,7 +376,9 @@ namespace Rad
             ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_towns.gif")); ;
             ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
             ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_roads.gif"));
-            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
+//            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
+            ImgBox.RadarCircleOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/radar_circle.gif"));
+
         }
         
     }

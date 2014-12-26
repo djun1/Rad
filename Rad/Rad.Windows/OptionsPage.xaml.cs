@@ -117,7 +117,8 @@ namespace Rad
             GenericCodeClass.CityOverlayFlag = (bool)CityCheckBox.IsChecked;
             GenericCodeClass.TownOverlayFlag = (bool)TownCheckBox.IsChecked;
             GenericCodeClass.RoadOverlayFlag = (bool)RoadCheckBox.IsChecked;
-            GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
+            //GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
+            GenericCodeClass.RadarCircleOverlayFlag = (bool)RadarCircleCheckBox.IsChecked;
 
             if (SettingsChanged != null)
                 SettingsChanged(this, EventArgs.Empty);

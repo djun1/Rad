@@ -31,7 +31,8 @@ static class GenericCodeClass
     private static bool OverlayCities = true;
     private static bool OverlayTowns = false;
     private static bool OverlayRoads = true;
-    private static bool OverlayRoadNos = true;
+    //private static bool OverlayRoadNos = false;
+    private static bool OverlayCircles = false;
 
     //Provide access to private property specifying Loop timer Interval
     public static TimeSpan LoopInterval
@@ -132,10 +133,16 @@ static class GenericCodeClass
         set { OverlayRoads = value; }
     }
 
-    public static bool RoadNoOverlayFlag
+//    public static bool RoadNoOverlayFlag
+//    {
+//        get { return OverlayRoadNos; }
+//        set { OverlayRoadNos = value; }
+//    }
+
+    public static bool RadarCircleOverlayFlag
     {
-        get { return OverlayRoadNos; }
-        set { OverlayRoadNos = value; }
+        get { return OverlayCircles; }
+        set { OverlayCircles = value; }
     }
 
     public static DateTime GetDateTimeFromFile(string Filename)

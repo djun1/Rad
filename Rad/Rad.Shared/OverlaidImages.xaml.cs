@@ -61,10 +61,16 @@ namespace Rad
             get { return (BitmapImage) TownsOverlay.Source; }
         }
 
-        public BitmapImage RoadNosOverlaySource
+//        public BitmapImage RoadNosOverlaySource
+//        {
+//            set { RoadNoOverlay.Source = value; }
+//            get { return (BitmapImage) RoadNoOverlay.Source; }
+//        }
+
+        public BitmapImage RadarCircleOverlaySource
         {
-            set { RoadNoOverlay.Source = value; }
-            get { return (BitmapImage) RoadNoOverlay.Source; }
+            set { RadarCircleOverlay.Source = value; }
+            get { return (BitmapImage)RadarCircleOverlay.Source; }
         }
 
         public Visibility CitiesOverlayVisibility
@@ -85,10 +91,16 @@ namespace Rad
             get { return TownsOverlay.Visibility; }
         }
 
-        public Visibility RoadNosOverlayVisibility
+//        public Visibility RoadNosOverlayVisibility
+//        {
+//            set { RoadNoOverlay.Visibility = value; }
+//            get { return RoadNoOverlay.Visibility; }
+//        }
+
+        public Visibility RadarCircleOverlayVisibility
         {
-            set { RoadNoOverlay.Visibility = value; }
-            get { return RoadNoOverlay.Visibility; }
+            set { RadarCircleOverlay.Visibility = value; }
+            get { return RadarCircleOverlay.Visibility; }
         }
     }
 }

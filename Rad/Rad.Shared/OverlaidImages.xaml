@@ -13,7 +13,7 @@
             <Image x:Name="CityOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="4" Visibility="Collapsed"/>
             <Image x:Name="TownsOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="3" Visibility="Collapsed"/>
             <Image x:Name="RoadsOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="1" Visibility="Collapsed"/>
-            <Image x:Name="RoadNoOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="2" Visibility="Collapsed"/>
-            <Image x:Name="RadarCircleOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="5" Visibility="Visible" Source="Assets/overlays/radar_circle.gif"/>
+            <!-- <Image x:Name="RoadNoOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="2" Visibility="Collapsed"/> -->
+            <Image x:Name="RadarCircleOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="2" Visibility="Collapsed" />
     </StackPanel>
 </UserControl>
