@@ -290,10 +290,6 @@
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-140.png" />
     <Content Include="Assets\StoreLogo.scale-180.png" />
-    <Content Include="Assets\whn_moretowns.gif" />
-    <Content Include="Assets\whn_numbers.gif" />
-    <Content Include="Assets\whn_roads.gif" />
-    <Content Include="Assets\whn_towns.gif" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-140.png" />
     <Content Include="Assets\Wide310x150Logo.scale-180.png" />
