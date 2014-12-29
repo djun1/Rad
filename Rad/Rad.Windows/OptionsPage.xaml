@@ -17,10 +17,8 @@
 
         <!-- Content Section 1-->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <!-- Section 1 header -->
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Station" />
-            <!-- Section 1 body -->
-            <ComboBox x:Name="ProvinceComboBox" Margin="0,12,0,0" Padding="10,0,27,0" Width="auto" SelectionChanged="ProvinceComboBox_SelectionChanged" SelectedIndex="0">
+            <ComboBox x:Name="ProvinceComboBox" Margin="0,12,0,0" Padding="10,0,27,0" SelectionChanged="ProvinceComboBox_SelectionChanged" SelectedIndex="0">
                 <x:String>Alberta</x:String>
                 <x:String>British Columbia</x:String>
                 <x:String>Manitoba</x:String>
@@ -30,11 +28,9 @@
                 <x:String>Quebec</x:String>
                 <x:String>Saskatchewan</x:String>
             </ComboBox>
-            <ComboBox x:Name="StationComboBox" Margin="0,12,0,0" Padding="10,0,27,0" Width="auto"/>
+            <ComboBox x:Name="StationComboBox" Margin="0,12,0,0" Padding="10,0,27,0" />
 
-            <!-- Section header -->
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Radar Product" Margin="0,24,0,0"/>
-            <!-- Section body -->
             <Grid Margin="0,12,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -44,9 +40,7 @@
                 <RadioButton x:Name="ProductRadioButton1" Grid.Column="1" Content="PRECIPET" IsChecked="True" GroupName="ProductBoxes" />
             </Grid>
 
-            <!-- Section header -->
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Precipitation Type" Margin="0,24,0,0"/>
-            <!-- Section body -->
             <Grid Margin="0,12,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -56,9 +50,7 @@
                 <RadioButton x:Name="PrecipitationRadioButton2" Grid.Column="1" Content="Snow" GroupName="PrecipitationBoxes"/>
             </Grid>
 
-            <!-- Section header -->
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Overlays" Margin="0,24,0,0"/>
-            <!-- Section body -->
             <Grid Margin="0,12,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -74,9 +66,7 @@
                 <CheckBox x:Name="RoadCheckBox" Grid.Column="1" Grid.Row="1" Content="Roads" IsChecked="True" />
             </Grid>
 
-            <!-- Section header -->
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" Margin="0,24,0,0"/>
-            <!-- Section body -->
             <Grid Margin="0,12,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -86,9 +76,7 @@
                 <RadioButton x:Name="DurationRadioButton2" Grid.Column="1" Content="3 hr" GroupName="DurationBoxes"/>
             </Grid>
 
-            <!-- Section header -->
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Loop Speed (time per image)" Margin="0,24,0,0"/>
-            <!-- Section body -->
             <Grid Margin="0,12,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
