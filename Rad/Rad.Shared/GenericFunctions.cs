@@ -29,9 +29,9 @@ static class GenericCodeClass
     private static string HomeStationCode = "WUJ";
     private static string HomeProvince = "British Columbia";
     private static bool OverlayCities = true;
-    private static bool OverlayTowns = false;
+//    private static bool OverlayTowns = false;
     private static bool OverlayRoads = true;
-    //private static bool OverlayRoadNos = false;
+    private static bool OverlayRoadNos = false;
     private static bool OverlayCircles = false;
 
     //Provide access to private property specifying Loop timer Interval
@@ -120,12 +120,12 @@ static class GenericCodeClass
         get { return OverlayCities; }
         set { OverlayCities = value; }
     }
-
-    public static bool TownOverlayFlag
-    {
-        get { return OverlayTowns; }
-        set { OverlayTowns = value; }
-    }
+    
+//    public static bool TownOverlayFlag
+//    {
+//        get { return OverlayTowns; }
+//        set { OverlayTowns = value; }
+//    }
 
     public static bool RoadOverlayFlag
     {
@@ -133,11 +133,11 @@ static class GenericCodeClass
         set { OverlayRoads = value; }
     }
 
-//    public static bool RoadNoOverlayFlag
-//    {
-//        get { return OverlayRoadNos; }
-//        set { OverlayRoadNos = value; }
-//    }
+    public static bool RoadNoOverlayFlag
+    {
+        get { return OverlayRoadNos; }
+        set { OverlayRoadNos = value; }
+    }
 
     public static bool RadarCircleOverlayFlag
     {
@@ -211,9 +211,7 @@ static class GenericCodeClass
             {
                 StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 8, "1.5_");
                 RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.5_");
-            }
-            
-        }            
+            }          
         
         FileNames.Add(StartDateTimeString);
         RegExp = new Regex(RegExpString);

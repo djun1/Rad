@@ -350,20 +350,20 @@ namespace Rad
             else
                 ImgBox.CitiesOverlayVisibility = Visibility.Collapsed;
 
-            if (GenericCodeClass.TownOverlayFlag)
-                ImgBox.TownsOverlayVisibility = Visibility.Visible;
-            else
-                ImgBox.TownsOverlayVisibility = Visibility.Collapsed;
+//            if (GenericCodeClass.TownOverlayFlag)
+//                ImgBox.TownsOverlayVisibility = Visibility.Visible;
+//            else
+//                ImgBox.TownsOverlayVisibility = Visibility.Collapsed;
 
             if (GenericCodeClass.RoadOverlayFlag)
                 ImgBox.RoadsOverlayVisibility = Visibility.Visible;
             else
                 ImgBox.RoadsOverlayVisibility = Visibility.Collapsed;
 
-//            if (GenericCodeClass.RoadNoOverlayFlag)
-//                ImgBox.RoadNosOverlayVisibility = Visibility.Visible;
-//            else
-//                ImgBox.RoadNosOverlayVisibility = Visibility.Collapsed;
+            if (GenericCodeClass.RoadNoOverlayFlag)
+                ImgBox.RoadNosOverlayVisibility = Visibility.Visible;
+            else
+                ImgBox.RoadNosOverlayVisibility = Visibility.Collapsed;
 
             if (GenericCodeClass.RadarCircleOverlayFlag)
                 ImgBox.RadarCircleOverlayVisibility = Visibility.Visible;
@@ -373,11 +373,11 @@ namespace Rad
 
         private void LoadOverlayImages()
         {
-            ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_towns.gif")); ;
-            ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
-            ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_roads.gif"));
-//            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
-            ImgBox.RadarCircleOverlaySource = new BitmapImage(new Uri("ms-appx:///Assets/overlays/radar_circle.gif"));
+            ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_cities.gif")); ;
+//            ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
+            ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_roads.gif"));
+            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
+            ImgBox.RadarCircleOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/radar_circle.gif"));
 
         }
         

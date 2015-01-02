@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ProvinceCities>
+  <Province Name="Composites">
+    <City>Pacific</City>
+    <City>Prairies</City>
+    <City>Ontario</City>
+    <City>Quebec</City>
+    <City>Atlantic</City>
+  </Province>
+  
   <Province Name="Alberta">
     <City>Edmonton</City>
     <City>Cold Lake</City>

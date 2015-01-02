@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Cities>
+<City Name ="Pacific">PYR</City>
+<City Name ="Prairies">PNR</City>
+<City Name ="Ontario">ONT</City>
+<City Name ="Quebec">QUE</City>
+<City Name ="Atlantic">ATL</City>
+  
 <City Name ="Edmonton">WHK</City>
 <City Name ="Cold Lake">WHN</City>
 <City Name ="Calgary">XSM</City>

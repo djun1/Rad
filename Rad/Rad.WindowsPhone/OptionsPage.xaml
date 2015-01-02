@@ -75,10 +75,10 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="CityCheckBox" Grid.Column="0" Grid.Row="0" Content="Cities"  />
-                    <CheckBox x:Name="TownCheckBox" Grid.Column="1" Grid.Row="0" Content="More Cities" />
-                    <CheckBox x:Name="RadarCircleCheckBox" Grid.Column="0" Grid.Row="1" Content="Radar Circles" />
-                    <CheckBox x:Name="RoadCheckBox" Grid.Column="1" Grid.Row="1" Content="Roads" />
+                    <CheckBox x:Name="CityCheckBox" Grid.Column="0" Grid.Row="0" Content="Cities" IsChecked="True"/>
+                    <CheckBox x:Name="RadarCircleCheckBox" Grid.Column="1" Grid.Row="0" Content="Radar Circles"  />
+                    <CheckBox x:Name="RoadCheckBox" Grid.Column="0" Grid.Row="1" Content="Roads" IsChecked="True" />
+                    <CheckBox x:Name="RoadNoCheckBox" Grid.Column="1" Grid.Row="1" Content="Road Numbers" />
                 </Grid>
 
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" Margin="0,12,0,0"/>
