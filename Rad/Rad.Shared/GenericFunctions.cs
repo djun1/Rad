@@ -211,7 +211,9 @@ static class GenericCodeClass
             {
                 StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 8, "1.5_");
                 RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.5_");
-            }          
+            }
+            
+        }            
         
         FileNames.Add(StartDateTimeString);
         RegExp = new Regex(RegExpString);
