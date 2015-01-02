@@ -213,7 +213,14 @@ static class GenericCodeClass
                 RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.5_");
             }
             
-        }            
+        }
+
+        if (HomeProvince.Equals("Composites"))
+        {
+            StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 4, "_WT");
+            RegExpString = RegExpString.Insert(RegExpString.Length - 5, "_WT");
+
+        }
         
         FileNames.Add(StartDateTimeString);
         RegExp = new Regex(RegExpString);

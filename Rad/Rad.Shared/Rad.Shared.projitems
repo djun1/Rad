@@ -22,11 +22,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)XMLParserClass.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\ATL\atl_towns.gif" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\ONT\ont_towns.gif" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\PNR\pnr_towns.gif" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\PYR\pyr_towns.gif" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\QUE\que_towns.gif" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\ATL\atl_cities.gif" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\ONT\ont_cities.gif" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\PNR\pnr_cities.gif" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\PYR\pyr_cities.gif" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\QUE\que_cities.gif" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\radar_circle.gif" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\WBI\wbi_cities.gif" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\WBI\wbi_moretowns.gif" />
