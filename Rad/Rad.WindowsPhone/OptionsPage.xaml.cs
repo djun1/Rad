@@ -128,6 +128,7 @@ namespace Rad
             ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
             PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
             StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
+            SetCompositeOptions();
         }
 
         /// <summary>
@@ -224,10 +225,17 @@ namespace Rad
         {
             if (ProvinceComboBox != null)
             {
-                bool isCompositeSelected = ProvinceComboBox.SelectedItem.Equals("Composites");
-
                 PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
                 GenericCodeClass.HomeProvinceName = ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString();
+                SetCompositeOptions();
+            }
+        }
+
+        private void SetCompositeOptions()
+        {
+            if (ProvinceComboBox != null)
+            {
+                bool isCompositeSelected = ProvinceComboBox.SelectedItem.Equals("Composites");
 
                 ProductRadioButton2.IsEnabled = !isCompositeSelected;
                 RadarCircleCheckBox.IsEnabled = !isCompositeSelected;
