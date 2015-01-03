@@ -36,9 +36,21 @@ namespace Rad
         {
             if (ProvinceComboBox != null)
             {
+                bool isCompositeSelected = ProvinceComboBox.SelectedItem.Equals("Composites");
                 PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
-            }
 
+                ProductRadioButton2.IsEnabled = !isCompositeSelected;
+                RadarCircleCheckBox.IsEnabled = !isCompositeSelected;
+                RoadCheckBox.IsEnabled = !isCompositeSelected;
+                RoadNoCheckBox.IsEnabled = !isCompositeSelected;
+
+                RadarCircleCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RadarCircleOverlayFlag;
+                RoadCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RoadOverlayFlag;
+                RoadNoCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RoadNoOverlayFlag;
+
+                ProductRadioButton2.IsChecked = !isCompositeSelected && GenericCodeClass.RadarTypeString.Equals("CAPPI");
+                ProductRadioButton1.IsChecked = isCompositeSelected || GenericCodeClass.RadarTypeString.Equals("PRECIPET");
+            }
         }
 
         private void OptionsPage_BackClick(object sender, BackClickEventArgs e)
@@ -177,6 +189,11 @@ namespace Rad
             ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
             PopulateStationBox(ProvinceComboBox.SelectedIndex,ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
             StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
+
+            CityCheckBox.IsChecked = GenericCodeClass.CityOverlayFlag;
+            RoadNoCheckBox.IsChecked = GenericCodeClass.RoadNoOverlayFlag;
+            RoadCheckBox.IsChecked = GenericCodeClass.RoadOverlayFlag;
+            RadarCircleCheckBox.IsChecked = GenericCodeClass.RadarCircleOverlayFlag;
         }
 
         private void PopulateStationBox(int ProvinceBoxIndex, string ProvinceName)

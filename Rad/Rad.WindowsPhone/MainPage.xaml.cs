@@ -82,10 +82,10 @@ namespace Rad
             Task GetFileNamesTask, DeleteFilesTask, DownloadFilesTask;
             var LoadingimageUri = new Uri("ms-appx:///Assets/Loading.png");
             ImgBox.ImgSource = new BitmapImage(LoadingimageUri);
+            GenericCodeClass.GetSavedAppData();
 
             GetFileNamesTask = GenericCodeClass.GetListOfLatestFiles(Files);
             SetNavigationButtonState(GenericCodeClass.IsLoopPaused, false);
-            
             StationBox.Text = GenericCodeClass.HomeStationName;
             LoadOverlayImages();
 
@@ -150,6 +150,7 @@ namespace Rad
         {
             LoopTimer.Stop();
             DownloadTimer.Stop();
+            GenericCodeClass.SaveAppData(false);
         }
 
         #region NavigationHelper registration

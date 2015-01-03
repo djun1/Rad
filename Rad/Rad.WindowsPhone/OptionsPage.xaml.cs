@@ -189,6 +189,8 @@ namespace Rad
             GenericCodeClass.RoadOverlayFlag = (bool)RoadCheckBox.IsChecked;
             GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
             GenericCodeClass.RadarCircleOverlayFlag = (bool)RadarCircleCheckBox.IsChecked;
+            
+            GenericCodeClass.SaveAppData(true);
         }
 
         #region NavigationHelper registration
@@ -222,8 +224,22 @@ namespace Rad
         {
             if (ProvinceComboBox != null)
             {
+                bool isCompositeSelected = ProvinceComboBox.SelectedItem.Equals("Composites");
+
                 PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
                 GenericCodeClass.HomeProvinceName = ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString();
+
+                ProductRadioButton2.IsEnabled = !isCompositeSelected;
+                RadarCircleCheckBox.IsEnabled = !isCompositeSelected;
+                RoadCheckBox.IsEnabled = !isCompositeSelected;
+                RoadNoCheckBox.IsEnabled = !isCompositeSelected;
+
+                RadarCircleCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RadarCircleOverlayFlag;
+                RoadCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RoadOverlayFlag;
+                RoadNoCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RoadNoOverlayFlag;
+
+                ProductRadioButton2.IsChecked = !isCompositeSelected && GenericCodeClass.RadarTypeString.Equals("CAPPI");
+                ProductRadioButton1.IsChecked = isCompositeSelected || GenericCodeClass.RadarTypeString.Equals("PRECIPET");
             }
         }
 

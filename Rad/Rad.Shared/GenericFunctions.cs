@@ -14,8 +14,8 @@ static class GenericCodeClass
 {
     private static TimeSpan LoopTimerInterval = new TimeSpan(0,0,0,0,500); //Loop timer interval in seconds
     private static TimeSpan DownloadTimerInterval = new TimeSpan(0,15,0); //Download time interval in minutes
-    private static string HomeStationURL = "http://dd.weatheroffice.gc.ca/radar/CAPPI/GIF/WUJ/";
-    private static string HomeStationString ="Vancouver";
+    private static string HomeStationURL;
+    private static string HomeStationString;
     private static bool IsHomeStationChanged = false;
     private static bool IsECLightningDataSelected = false;
     private static HttpClient Client;
@@ -24,15 +24,15 @@ static class GenericCodeClass
     public static List<string> ExistingFiles = new List<string>();
     public static bool IsLoopPaused = false;
     public static bool IsAppResuming = false;
-    private static string PrecipitationType = "SNOW";
-    private static string RadarType = "CAPPI";
-    private static string HomeStationCode = "WUJ";
-    private static string HomeProvince = "British Columbia";
-    private static bool OverlayCities = true;
-//    private static bool OverlayTowns = false;
-    private static bool OverlayRoads = true;
-    private static bool OverlayRoadNos = false;
-    private static bool OverlayCircles = false;
+    private static string PrecipitationType;
+    private static string RadarType;
+    private static string HomeStationCode;
+    private static string HomeProvince;
+    private static bool OverlayCities;
+    //private static bool OverlayTowns;
+    private static bool OverlayRoads;
+    private static bool OverlayRoadNos;
+    private static bool OverlayCircles;
 
     //Provide access to private property specifying Loop timer Interval
     public static TimeSpan LoopInterval
@@ -219,7 +219,6 @@ static class GenericCodeClass
         {
             StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 4, "_WT");
             RegExpString = RegExpString.Insert(RegExpString.Length - 5, "_WT");
-
         }
         
         FileNames.Add(StartDateTimeString);
@@ -389,7 +388,75 @@ static class GenericCodeClass
             await File.DeleteAsync();
         }
     }
+	
+	public static void SaveAppData(bool SettingsChanged)
+    {
+        Windows.Storage.ApplicationDataContainer RoamingSettings =
+                Windows.Storage.ApplicationData.Current.RoamingSettings;
 
+        if(RoamingSettings != null)
+        {
+            if(SettingsChanged == true)
+            {
+                RoamingSettings.Values["RadarType"] = RadarType;
+                RoamingSettings.Values["PrecipitationType"] = PrecipitationType;
+                RoamingSettings.Values["HomeStationCode"] = HomeStationCode;
+                RoamingSettings.Values["HomeStationURL"] = HomeStationURL;
+                RoamingSettings.Values["HomeStationString"] = HomeStationString;
+                RoamingSettings.Values["HomeProvince"] = HomeProvince;
+                RoamingSettings.Values["DownloadPeriod"] = DownloadPeriod;
+                RoamingSettings.Values["LoopTimerInterval"] = LoopTimerInterval.Milliseconds;
+                RoamingSettings.Values["OverlayCities"] = OverlayCities;
+                RoamingSettings.Values["OverlayRoadNos"] = OverlayRoadNos;
+                RoamingSettings.Values["OverlayRoads"] = OverlayRoads;
+                RoamingSettings.Values["OverlayCircles"] = OverlayCircles;
+            }
+            
+            RoamingSettings.Values["IsLoopPaused"] = GenericCodeClass.IsLoopPaused;
+        }
+    }
+
+    public static void GetSavedAppData()
+    {
+        Windows.Storage.ApplicationDataContainer RoamingSettings =
+                Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+        if(RoamingSettings != null)
+        {
+            try
+            {
+                HomeStationURL = RoamingSettings.Values["HomeStationURL"].ToString();
+                LoopTimerInterval = new TimeSpan(0, 0, 0, 0, (int)RoamingSettings.Values["LoopTimerInterval"]);
+                HomeStationString = RoamingSettings.Values["HomeStationString"].ToString();
+                DownloadPeriod = (int)RoamingSettings.Values["DownloadPeriod"];
+                PrecipitationType = RoamingSettings.Values["PrecipitationType"].ToString();
+                RadarType = RoamingSettings.Values["RadarType"].ToString();
+                HomeStationCode = RoamingSettings.Values["HomeStationCode"].ToString();
+                HomeProvince = RoamingSettings.Values["HomeProvince"].ToString();
+                OverlayCities = (bool)RoamingSettings.Values["OverlayCities"];
+                OverlayRoadNos = (bool)RoamingSettings.Values["OverlayRoadNos"];
+                OverlayRoads = (bool)RoamingSettings.Values["OverlayRoads"];
+                OverlayCircles = (bool)RoamingSettings.Values["OverlayCircles"];
+                IsLoopPaused = (bool)RoamingSettings.Values["IsLoopPaused"];
+
+            }
+            catch(Exception e)
+            {
+                HomeStationURL = "http://dd.weatheroffice.gc.ca/radar/CAPPI/GIF/WUJ/";
+                LoopTimerInterval = new TimeSpan(0, 0, 0, 0, 500);
+                HomeStationString = "Vancouver";
+                DownloadPeriod = 1;
+                PrecipitationType = "SNOW";
+                RadarType = "CAPPI";
+                HomeStationCode = "WUJ";
+                HomeProvince = "British Columbia";
+                OverlayCities = true;
+                OverlayRoadNos = false;
+                OverlayRoads = true;
+                OverlayCircles = false;
+            }
+        }
+    }
     public static bool IsError(string s)
     {
         return s.Equals("Error.png");

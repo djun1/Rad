@@ -92,6 +92,7 @@ namespace Rad
             var LoadingimageUri = new Uri("ms-appx:///Assets/Loading.png");
             ImgBox.ImgSource = new BitmapImage(LoadingimageUri);
 
+            GenericCodeClass.GetSavedAppData();
             LoadOverlayImages();
             SetNavigationButtonState(GenericCodeClass.IsLoopPaused, false);
             GetFileNamesTask = GenericCodeClass.GetListOfLatestFiles(Files);
@@ -149,6 +150,7 @@ namespace Rad
             DownloadTimer.Stop();
             SettingsPane.GetForCurrentView().CommandsRequested -= OnCommandsRequested;
             GenericCodeClass.IsAppResuming = true;
+            GenericCodeClass.SaveAppData(false);
         }
 
         #region NavigationHelper registration
@@ -367,6 +369,8 @@ namespace Rad
 
             await GetFileNamesTask;
             DownloadFilesTask = DownloadFiles();
+            
+            GenericCodeClass.SaveAppData(true);
 
             LoopTimer.Interval = GenericCodeClass.LoopInterval;
 

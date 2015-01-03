@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Rad.Common;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -37,6 +38,13 @@ namespace Rad
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+            this.Resuming += new EventHandler<Object>(App_Resuming);
+        }
+
+        async void App_Resuming(object sender, object e)
+        {
+            //throw new NotImplementedException();
+            await SuspensionManager.RestoreAsync();
         }
 
         /// <summary>
@@ -62,6 +70,7 @@ namespace Rad
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
+                Rad.Common.SuspensionManager.RegisterFrame(rootFrame, "appFrame");
 
                 // TODO: change this value to a cache size that is appropriate for your application
                 rootFrame.CacheSize = 1;
@@ -126,10 +135,10 @@ namespace Rad
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-
+            await Rad.Common.SuspensionManager.SaveAsync();
             // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
