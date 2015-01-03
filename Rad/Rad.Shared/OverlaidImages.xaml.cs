@@ -39,7 +39,11 @@ namespace Rad
 
         public BitmapImage ImgSource
         {
-            set { BaseImage.Source = value;}
+            set 
+            {
+                BaseImage.Source = value;
+                ControlHeight = value.PixelHeight;
+            }
             get { return (BitmapImage) BaseImage.Source; }
         }
 
@@ -65,6 +69,23 @@ namespace Rad
         {
             set { RoadNoOverlay.Source = value; }
             get { return (BitmapImage) RoadNoOverlay.Source; }
+        }
+		
+		public double ControlHeight
+        {
+            set
+            {
+                Thickness margins = new Thickness(0,-value,0,0);
+
+                BaseImage.Height = value;
+                CityOverlay.Height = value;
+                RoadsOverlay.Height = value;
+                RadarCircleOverlay.Height = value;
+                CityOverlay.Margin = margins;
+                RoadsOverlay.Margin = margins;
+                RadarCircleOverlay.Margin = margins;
+            }
+            get { return BaseImage.Height; }
         }
 
         public BitmapImage RadarCircleOverlaySource
