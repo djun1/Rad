@@ -32,8 +32,16 @@
             <StackPanel Grid.Row="1" Margin="19,9.5,19,0">
 
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Station" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="CountryRadioButton1" Grid.Column="0" Content="Canada" GroupName="CountryBoxes" IsChecked="True"/>
+                    <RadioButton x:Name="CountryRadioButton2" Grid.Column="1" Content="USA" GroupName="CountryBoxes" />
+                </Grid>
                 <ComboBox x:Name="ProvinceComboBox" Padding="0,0,27,0" Width="auto" SelectionChanged="ProvinceComboBox_SelectionChanged" SelectedIndex="0">
-                    <x:String>Composites</x:String>
+                    <x:String>Regional Composites</x:String>
                     <x:String>Alberta</x:String>
                     <x:String>British Columbia</x:String>
                     <x:String>Manitoba</x:String>
@@ -45,17 +53,17 @@
                 </ComboBox>
                 <ComboBox x:Name="StationComboBox" />
 
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Radar Product" Margin="0,12,0,0"/>
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Radar Product" Margin="0,24,0,0"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <RadioButton x:Name="ProductRadioButton1" Grid.Column="0" Content="PRECIPET" GroupName="ProductBoxes" />
-                    <RadioButton x:Name="ProductRadioButton2" Grid.Column="1" Content="CAPPI" GroupName="ProductBoxes" IsChecked="True"/>
+                    <RadioButton x:Name="ProductRadioButton2" Grid.Column="0" Content="CAPPI" GroupName="ProductBoxes" IsChecked="True"/>
+                    <RadioButton x:Name="ProductRadioButton1" Grid.Column="1" Content="PRECIPET" GroupName="ProductBoxes" />
                 </Grid>
 
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Precipitation Type" Margin="0,12,0,0"/>
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Precipitation Type" Margin="0,24,0,0"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -66,7 +74,7 @@
 
                 </Grid>
 
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Overlays" Margin="0,12,0,0"/>
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Overlays" Margin="0,24,0,0"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -82,7 +90,7 @@
                     <CheckBox x:Name="RoadNoCheckBox" Grid.Column="1" Grid.Row="1" Content="Road Numbers" />
                 </Grid>
 
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" Margin="0,12,0,0"/>
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Duration" Margin="0,24,0,0"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -92,7 +100,7 @@
                     <RadioButton x:Name="DurationRadioButton2" Grid.Column="1" Content="3 hr" GroupName="DurationBoxes"/>
                 </Grid>
 
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Loop Speed (time per image)" Margin="0,12,0,0"/>
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Loop Speed (time per image)" Margin="0,24,0,0"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

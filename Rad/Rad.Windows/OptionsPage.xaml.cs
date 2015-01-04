@@ -45,7 +45,7 @@ namespace Rad
         {
             if (ProvinceComboBox != null)
             {
-                bool isCompositeSelected = ProvinceComboBox.SelectedItem.Equals("Composites");
+                bool isCompositeSelected = ProvinceComboBox.SelectedItem.Equals("Regional Composites");
                 
                 ProductRadioButton2.IsEnabled = !isCompositeSelected;
                 RadarCircleCheckBox.IsEnabled = !isCompositeSelected;

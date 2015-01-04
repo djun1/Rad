@@ -374,11 +374,11 @@ namespace Rad
 
         private void LoadOverlayImages()
         {
-            ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_cities.gif")); ;
-//            ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
-            ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_roads.gif"));
-            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
-            ImgBox.RadarCircleOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/radar_circle.gif"));
+            ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_cities.gif")); ;
+//          ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
+            ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_roads.gif"));
+            ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
+            ImgBox.RadarCircleOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/radar_circle.gif"));
 
         }
         

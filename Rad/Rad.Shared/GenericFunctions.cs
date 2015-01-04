@@ -216,7 +216,7 @@ static class GenericCodeClass
             
         }
 
-        if (HomeProvince.Equals("Composites"))
+        if (HomeProvince.Equals("Regional Composites"))
         {
             StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 4, "_WT");
             RegExpString = RegExpString.Insert(RegExpString.Length - 5, "_WT");

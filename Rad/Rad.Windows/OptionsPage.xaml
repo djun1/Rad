@@ -18,8 +18,16 @@
         <!-- Content Section 1-->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Station" />
+            <Grid Margin="0,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="CountryRadioButton1" Grid.Column="0" Content="Canada" GroupName="CountryBoxes" IsChecked="True" />
+                <RadioButton x:Name="CountryRadioButton2" Grid.Column="1" Content="USA" GroupName="CountryBoxes" />
+            </Grid>
             <ComboBox x:Name="ProvinceComboBox" Margin="0,12,0,0" Padding="10,0,27,0" SelectionChanged="ProvinceComboBox_SelectionChanged" SelectedIndex="0">
-                <x:String>Composites</x:String>
+                <x:String>Regional Composites</x:String>
                 <x:String>Alberta</x:String>
                 <x:String>British Columbia</x:String>
                 <x:String>Manitoba</x:String>
