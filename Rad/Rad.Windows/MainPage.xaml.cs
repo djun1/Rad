@@ -91,13 +91,13 @@ namespace Rad
             Task GetFileNamesTask, DownloadFilesTask;
             var LoadingimageUri = new Uri("ms-appx:///Assets/Loading.png");
             ImgBox.ImgSource = new BitmapImage(LoadingimageUri);
-
+           
             GenericCodeClass.GetSavedAppData();
             LoadOverlayImages();
             SetNavigationButtonState(GenericCodeClass.IsLoopPaused, false);
             GetFileNamesTask = GenericCodeClass.GetListOfLatestFiles(Files);
             if(!GenericCodeClass.IsAppResuming)
-                await GenericCodeClass.DeleteAllFiles(ImageFolder);
+                await GenericCodeClass.DeleteFiles(ImageFolder,null,true);
                                    
             StationBox.Text = GenericCodeClass.HomeStationName;
             GenericCodeClass.IsAppResuming = false;
@@ -229,11 +229,13 @@ namespace Rad
             FileDownloadProgBar.Minimum = 0;
             FileDownloadProgBar.Value = 0;
             
-
             for (i = 0; i < Files.Count; i++)
             {
                 if (GenericCodeClass.ExistingFiles.Contains(Files[i].ToString()) && GenericCodeClass.HomeStationChanged == false)
+                {
+                    GenericCodeClass.ExistingFiles.Remove(Files[i].ToString());
                     continue;
+                }                    
                 
                 StatusBox.Text = "Downloading image " + DownloadedFiles.ToString() + "/" + Files.Count.ToString();
                 FileDownloadProgBar.Visibility = Visibility.Visible;
@@ -262,6 +264,8 @@ namespace Rad
             }
             else
                 CurrImgIndex = -1;
+
+            await GenericCodeClass.DeleteFiles(ImageFolder, GenericCodeClass.ExistingFiles, false);
         }
 
         private async Task ChangeImage(int ImageIndex)
@@ -360,7 +364,7 @@ namespace Rad
             {
                 SetOverlayVisibilities(true);
                 LoadOverlayImages();
-                DeleteFilesTask = GenericCodeClass.DeleteAllFiles(ImageFolder);
+                DeleteFilesTask = GenericCodeClass.DeleteFiles(ImageFolder,null,true);
                 StationBox.Text = GenericCodeClass.HomeStationName;
                 
                 await DeleteFilesTask;

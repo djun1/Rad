@@ -171,10 +171,10 @@ static class GenericCodeClass
         string StartDateTimeString;
         Regex RegExp;
         string RegExpString;
-
+        
         ExistingFiles.Clear();
 
-        if(IsHomeStationChanged == false)
+        if (IsHomeStationChanged == false)
         {
             foreach (string str in FileNames)
             {
@@ -186,15 +186,16 @@ static class GenericCodeClass
 
         if (Client == null)
             Client = new HttpClient();
-
-        var HttpClientTask = Client.GetAsync(URI);
-
+        
         //string RegExpString = ">\\s*";
         DateTime CurrDateTime = DateTime.Now.ToUniversalTime();
         DateTime StartOfYearDate = new DateTime(CurrDateTime.Year - 1, 12, 31);
         DateTime StartDateTime = CurrDateTime.Subtract(new TimeSpan(DownloadPeriod, 0, 0));    //Subtract 3 hours from the Current Time
         TimeSpan NoOfDays = CurrDateTime.Subtract(StartOfYearDate);
-        
+
+        Client.DefaultRequestHeaders.IfModifiedSince = StartDateTime;
+        var HttpClientTask = Client.GetAsync(URI);
+
         StartDateTimeString = StartDateTime.Year.ToString() + StartDateTime.Month.ToString("D2") +StartDateTime.Day.ToString("D2") + StartDateTime.Hour.ToString("D2") + StartDateTime.Minute.ToString("D2")
             + "_" + HomeStationCode + "_" + RadarType + "_" + PrecipitationType + ".gif";
 
@@ -371,7 +372,7 @@ static class GenericCodeClass
 
     }
 
-    public static async Task DeleteAllFiles(StorageFolder ImageFolder)
+    public static async Task DeleteFiles(StorageFolder ImageFolder,List<string> FilesToDelete, bool DeleteAllFiles)
     {
         StorageFile File;
         int i;
@@ -379,14 +380,26 @@ static class GenericCodeClass
         if (ImageFolder == null)
             ImageFolder = await ApplicationData.Current.TemporaryFolder.CreateFolderAsync("Images", CreationCollisionOption.OpenIfExists);
 
-        //Get list of files currently in the local data folder
-        var FileList = await ImageFolder.GetFilesAsync();
-
-        for (i = 0; i < FileList.Count; i++)
+        if(DeleteAllFiles)
         {
-            File = await ImageFolder.GetFileAsync(FileList[i].Name);
-            await File.DeleteAsync();
+            //Get list of files currently in the local data folder
+            var FileList = await ImageFolder.GetFilesAsync();
+            for (i = 0; i < FileList.Count; i++)
+            {
+                File = await ImageFolder.GetFileAsync(FileList[i].Name);
+                await File.DeleteAsync();
+            }
         }
+        else
+        {
+            for (i = 0; i < FilesToDelete.Count; i++)
+            {
+                File = await ImageFolder.GetFileAsync(FilesToDelete[i].ToString());
+                await File.DeleteAsync();
+            }
+        }
+
+                
     }
 	
 	public static void SaveAppData(bool SettingsChanged)

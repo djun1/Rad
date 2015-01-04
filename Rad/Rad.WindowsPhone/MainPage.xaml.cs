@@ -91,7 +91,7 @@ namespace Rad
 
             if(GenericCodeClass.HomeStationChanged == true)
             {
-                DeleteFilesTask = GenericCodeClass.DeleteAllFiles(ImageFolder);
+                DeleteFilesTask = GenericCodeClass.DeleteFiles(ImageFolder,null,true);
                 //GenericCodeClass.HomeStationChanged = false;
                 await DeleteFilesTask;
             }
