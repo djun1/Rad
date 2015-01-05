@@ -77,13 +77,24 @@ namespace Rad
             {
                 Thickness margins = new Thickness(0,-value,0,0);
 
+                TopoBackground.Height = value;
                 BaseImage.Height = value;
-                CityOverlay.Height = value;
+                CountiesOverlay.Height = value;
                 RoadsOverlay.Height = value;
+                RoadNoOverlay.Height = value;
                 RadarCircleOverlay.Height = value;
-                CityOverlay.Margin = margins;
+                CityOverlay.Height = value;
+                WarningsOverlay.Height = value;
+                LegendOverlay.Height = value;
+
+                BaseImage.Margin = margins;
+                CountiesOverlay.Margin = margins;
                 RoadsOverlay.Margin = margins;
+                RoadNoOverlay.Margin = margins;
                 RadarCircleOverlay.Margin = margins;
+                CityOverlay.Margin = margins;
+                WarningsOverlay.Margin = margins;
+                LegendOverlay.Margin = margins;
             }
             get { return BaseImage.Height; }
         }

@@ -49,7 +49,7 @@
                 <RadioButton x:Name="ProductRadioButton1" Grid.Column="1" Content="PRECIPET" IsChecked="True" GroupName="ProductBoxes" />
             </Grid>
 
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Precipitation Type" Margin="0,24,0,0"/>
+            <TextBlock x:Name="PrecipitationTypeTextBox" Style="{StaticResource TitleTextBlockStyle}" Text="Precipitation Type" Margin="0,24,0,0"/>
             <Grid Margin="0,12,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -59,7 +59,7 @@
                 <RadioButton x:Name="PrecipitationRadioButton2" Grid.Column="1" Content="Snow" GroupName="PrecipitationBoxes"/>
             </Grid>
 
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Overlays" Margin="0,24,0,0"/>
+            <TextBlock x:Name="OverlaysTextBox" Style="{StaticResource TitleTextBlockStyle}" Text="Overlays" Margin="0,24,0,0"/>
             <Grid Margin="0,12,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

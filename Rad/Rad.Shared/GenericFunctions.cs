@@ -33,6 +33,7 @@ static class GenericCodeClass
     private static bool OverlayRoads;
     private static bool OverlayRoadNos;
     private static bool OverlayCircles;
+    private static bool IsCanadaSelected;
 
     //Provide access to private property specifying Loop timer Interval
     public static TimeSpan LoopInterval
@@ -143,6 +144,12 @@ static class GenericCodeClass
     {
         get { return OverlayCircles; }
         set { OverlayCircles = value; }
+    }
+
+    public static bool CanadaSelected
+    {
+        get { return IsCanadaSelected; }
+        set { IsCanadaSelected = value; }
     }
 
     public static DateTime GetDateTimeFromFile(string Filename)
@@ -423,6 +430,7 @@ static class GenericCodeClass
                 RoamingSettings.Values["OverlayRoadNos"] = OverlayRoadNos;
                 RoamingSettings.Values["OverlayRoads"] = OverlayRoads;
                 RoamingSettings.Values["OverlayCircles"] = OverlayCircles;
+                RoamingSettings.Values["IsCanadaSelected"] = IsCanadaSelected;
             }
             
             RoamingSettings.Values["IsLoopPaused"] = GenericCodeClass.IsLoopPaused;
@@ -451,6 +459,7 @@ static class GenericCodeClass
                 OverlayRoads = (bool)RoamingSettings.Values["OverlayRoads"];
                 OverlayCircles = (bool)RoamingSettings.Values["OverlayCircles"];
                 IsLoopPaused = (bool)RoamingSettings.Values["IsLoopPaused"];
+                IsCanadaSelected = (bool)RoamingSettings.Values["IsCanadaSelected"];
 
             }
             catch(Exception e)
@@ -467,6 +476,7 @@ static class GenericCodeClass
                 OverlayRoadNos = false;
                 OverlayRoads = true;
                 OverlayCircles = false;
+                IsCanadaSelected = true;
             }
         }
     }

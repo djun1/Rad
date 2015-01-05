@@ -9,11 +9,15 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
         <StackPanel>
-            <Image x:Name="BaseImage" HorizontalAlignment="Left" Height="468" Margin="0,0,0,0" VerticalAlignment="Top"/>
-            <Image x:Name="CityOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="4" Visibility="Collapsed"/>
-            <!-- <Image x:Name="TownsOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="3" Visibility="Collapsed"/>  -->
-            <Image x:Name="RoadsOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="1" Visibility="Collapsed"/>
-            <Image x:Name="RoadNoOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="2" Visibility="Collapsed"/>
-            <Image x:Name="RadarCircleOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="3" Visibility="Collapsed" />
-    </StackPanel>
+        <Image x:Name="TopoBackground" HorizontalAlignment="Left" Height="468" Margin="0,0,0,0" VerticalAlignment="Top" Visibility="Visible"/>
+            <Image x:Name="BaseImage" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="1"/>
+            <Image x:Name="CountiesOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="2" Visibility="Collapsed"/>
+            <Image x:Name="RoadsOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="3" Visibility="Collapsed"/>
+            <Image x:Name="RoadNoOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="4" Visibility="Collapsed"/>
+            <Image x:Name="RadarCircleOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="5" Visibility="Collapsed" />
+            <Image x:Name="CityOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="6" Visibility="Collapsed"/>
+            <!-- <Image x:Name="TownsOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="3" Visibility="Collapsed"/>  -->            
+            <Image x:Name="WarningsOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="7" Visibility="Collapsed" />
+            <Image x:Name="LegendOverlay" HorizontalAlignment="Left" Height="468" Margin="0,-468,0,0" VerticalAlignment="Top" Canvas.ZIndex="8" Visibility="Collapsed" />
+        </StackPanel>
 </UserControl>

@@ -36,18 +36,26 @@ namespace Rad
         {
             if (ProvinceComboBox != null)
             {
-                PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
-                SetCompositeOptions();
+                PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString(),false);
+                SetOptions();
             }
         }
 
-        private void SetCompositeOptions()
+        private void SetOptions()
         {
             if (ProvinceComboBox != null)
             {
                 bool isCompositeSelected = ProvinceComboBox.SelectedItem.Equals("Regional Composites");
-                
+
+                ProductRadioButton1.IsEnabled = true;
                 ProductRadioButton2.IsEnabled = !isCompositeSelected;
+                ProductRadioButton2.IsChecked = !isCompositeSelected && GenericCodeClass.RadarTypeString.Equals("CAPPI");
+                ProductRadioButton1.IsChecked = isCompositeSelected || GenericCodeClass.RadarTypeString.Equals("PRECIPET");
+
+                PrecipitationRadioButton1.IsEnabled = GenericCodeClass.CanadaSelected;
+                PrecipitationRadioButton2.IsEnabled = GenericCodeClass.CanadaSelected;
+
+                CityCheckBox.IsEnabled = !isCompositeSelected || (isCompositeSelected && GenericCodeClass.CanadaSelected);
                 RadarCircleCheckBox.IsEnabled = !isCompositeSelected;
                 RoadCheckBox.IsEnabled = !isCompositeSelected;
                 RoadNoCheckBox.IsEnabled = !isCompositeSelected;
@@ -56,8 +64,21 @@ namespace Rad
                 RoadCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RoadOverlayFlag;
                 RoadNoCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RoadNoOverlayFlag;
 
-                ProductRadioButton2.IsChecked = !isCompositeSelected && GenericCodeClass.RadarTypeString.Equals("CAPPI");
-                ProductRadioButton1.IsChecked = isCompositeSelected || GenericCodeClass.RadarTypeString.Equals("PRECIPET");
+                if(GenericCodeClass.CanadaSelected)
+                {
+                    ProductRadioButton1.Content = "PRECIPET";
+                    ProductRadioButton2.Content = "CAPPI";
+                    RoadNoCheckBox.Content = "Road Numbers";
+                    RadarCircleCheckBox.Content = "Radar Circles";
+                    
+                }
+                else
+                {
+                    ProductRadioButton1.Content = "COMPOSITE";
+                    ProductRadioButton2.Content = "BASE";
+                    RoadNoCheckBox.Content = "Counties";
+                    RadarCircleCheckBox.Content = "Warnings";
+                }
             }
         }
 
@@ -194,18 +215,38 @@ namespace Rad
                     break;
             }
 
-            ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
-            PopulateStationBox(ProvinceComboBox.SelectedIndex,ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
-            SetCompositeOptions();
-            StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
+            CountryRadioButton1.IsChecked = GenericCodeClass.CanadaSelected;
+            CountryRadioButton2.IsChecked = !GenericCodeClass.CanadaSelected;
+
+            if(GenericCodeClass.CanadaSelected)
+            {
+                ProvincialCityXML.SetSourceFile("ProvinceCities.xml");
+                CityCodeXML.SetSourceFile("CityCodes.xml");
+            }
+            else
+            {
+                ProvincialCityXML.SetSourceFile("USStateCities.xml");
+                CityCodeXML.SetSourceFile("USCityCodes.xml");
+            }
+
+            PopulateProvinceBox(true);
+            //ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
+            PopulateStationBox(ProvinceComboBox.SelectedIndex,ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString(),true);
+            SetOptions();
+            //StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
 
             CityCheckBox.IsChecked = GenericCodeClass.CityOverlayFlag;
             RoadNoCheckBox.IsChecked = GenericCodeClass.RoadNoOverlayFlag;
             RoadCheckBox.IsChecked = GenericCodeClass.RoadOverlayFlag;
             RadarCircleCheckBox.IsChecked = GenericCodeClass.RadarCircleOverlayFlag;
+
+            CountryRadioButton1.Checked += CountryRadioButton_CheckedHandler;
+            CountryRadioButton2.Checked += CountryRadioButton_CheckedHandler;
+            //ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
+
         }
 
-        private void PopulateStationBox(int ProvinceBoxIndex, string ProvinceName)
+        private void PopulateStationBox(int ProvinceBoxIndex, string ProvinceName, bool UseHomeStationValue)
         {
 
             if(StationComboBox != null)
@@ -224,8 +265,102 @@ namespace Rad
                         StationComboBox.Items.Add(City);
                     }
                 }
-                StationComboBox.SelectedIndex = 0;
+
+                if (UseHomeStationValue)
+                    StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
+                else
+                    StationComboBox.SelectedIndex = 0;
             }            
+        }
+
+        //private void CountryRadioButton1_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    List<string> ProvinceList;
+        //    ProvincialCityXML.SetSourceFile("ProvinceCities.xml");
+        //    CityCodeXML.SetSourceFile("CityCodes.xml");
+
+        //    ProvinceList = ProvincialCityXML.ReadProvinceList();
+        //    if(ProvinceComboBox != null)
+        //    {
+        //        ProvinceComboBox.SelectionChanged -= ProvinceComboBox_SelectionChanged;
+        //        ProvinceComboBox.Items.Clear();
+
+        //        foreach (string str in ProvinceList)
+        //            ProvinceComboBox.Items.Add(str);
+        //        ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
+        //        ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
+
+        //        //PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
+        //    }
+                
+        //}
+
+        //private void CountryRadioButton2_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    List<string> ProvinceList;
+        //    ProvincialCityXML.SetSourceFile("USStateCities.xml");
+        //    CityCodeXML.SetSourceFile("USCityCodes.xml");
+        //    ProvinceList = ProvincialCityXML.ReadProvinceList();
+
+        //    if (ProvinceComboBox != null)
+        //    {
+        //        ProvinceComboBox.SelectionChanged -= ProvinceComboBox_SelectionChanged;
+        //        ProvinceComboBox.Items.Clear();
+
+        //        foreach (string str in ProvinceList)
+        //            ProvinceComboBox.Items.Add(str);
+        //        ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
+        //        ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
+        //        //PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
+        //    }
+                
+        //}
+
+        private void CountryRadioButton_CheckedHandler(object sender, RoutedEventArgs e)
+        {
+            if(sender == CountryRadioButton1)
+            {
+                if (GenericCodeClass.CanadaSelected)
+                    return;
+                ProvincialCityXML.SetSourceFile("ProvinceCities.xml");
+                CityCodeXML.SetSourceFile("CityCodes.xml");
+                GenericCodeClass.CanadaSelected = true;
+            }
+            else if (sender == CountryRadioButton2)
+            {
+                if (!GenericCodeClass.CanadaSelected)
+                    return;
+                ProvincialCityXML.SetSourceFile("USStateCities.xml");
+                CityCodeXML.SetSourceFile("USCityCodes.xml");
+                GenericCodeClass.CanadaSelected = false;
+            }
+
+            
+            PopulateProvinceBox(false);
+            
+        }
+
+        private void PopulateProvinceBox(bool UseHomeStationVlaue)
+        {
+            List<string> ProvinceList = ProvincialCityXML.ReadProvinceList();
+
+            if (ProvinceComboBox != null)
+            {
+                ProvinceComboBox.SelectionChanged -= ProvinceComboBox_SelectionChanged;
+                ProvinceComboBox.Items.Clear();
+
+                foreach (string str in ProvinceList)
+                    ProvinceComboBox.Items.Add(str);
+
+                ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
+                if (UseHomeStationVlaue)
+                    ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
+                else
+                    ProvinceComboBox.SelectedIndex = 0;
+
+                //PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
+            }
+
         }
     }
 }
