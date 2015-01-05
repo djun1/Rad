@@ -955,8 +955,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Overlays\USA\YUX\YUX_Topo_Short.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)CityCodes.xml" />
     <Content Include="$(MSBuildThisFileDirectory)ProvinceCities.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)USCityCodes.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)USStateCities.xml" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)OverlaidImages.xaml">

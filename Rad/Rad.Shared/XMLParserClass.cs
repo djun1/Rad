@@ -47,27 +47,6 @@ namespace Rad
             }
             
         }
-        public List<string> ReadProvinceList()
-        {
-            List<string> ProvinceList = new List<string>();
-            if (XMLDocElements != null)
-            {
-                IEnumerable<XElement> Provinces =
-                    from EnumProv in XMLDocElements.Elements("Province")
-                    select EnumProv;
-
-                IEnumerable<XAttribute> attList =
-                    from at in Provinces.Attributes()
-                    select at;
-
-                foreach (XAttribute EnumProv in attList)
-                {
-                    ProvinceList.Add(EnumProv.Value);
-                }
-            }
-
-            return ProvinceList;
-        }
 
         public string GetCityCode(string CityName)
         {
@@ -85,18 +64,6 @@ namespace Rad
             }
 
             return "Failed";
-        }
-
-        public void SetSourceFile(string FileName)
-        {
-            try
-            {
-                XMLDocElements = XElement.Load(FileName);
-            }
-            catch (Exception e)
-            {
-
-            }
         }
     }
 }
