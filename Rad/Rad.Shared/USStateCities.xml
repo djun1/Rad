@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ProvinceCities>
+  <Province Name="Regional Composites">
+  <City>Alaska</City>
+  <City>Central Great Lakes</City>
+  <City>Hawaii</City>
+  <City>Northeast</City>
+  <City>Northern Rockies</City>
+  <City>Pacific Northwest</City>
+  <City>Pacific Southwest</City>
+  <City>Southeast</City>
+  <City>Southern Mississippi Valley</City>
+  <City>Southern Plains</City>
+  <City>Southern Rockies</City>
+  <City>Upper Mississippi Valley</City>
+  </Province>
+  
+<Province Name="Alaska">
+	<City>Bethel</City>
+	<City>Biorka Island</City>
+	<City>Kenai</City>
+	<City>King Salmon</City>
+	<City>Middleton Island</City>
+	<City>Nome</City>
+	<City>Pedro Dome</City>
+</Province>
+
+<Province Name="Alabama">
+	<City>Birmingham</City>
+	<City>East Alabama</City>
+	<City>Fort Rucker</City>
+	<City>Huntsville</City>
+	<City>Mobile</City>
+</Province>
+
+<Province Name="Arkansas">
+	<City>Little Rock</City>
+	<City>Western Arkansas/Fort Smith</City>
+</Province>
+
+<Province Name="Arizona">
+	<City>Flagstaff</City>
+	<City>Phoenix</City>
+	<City>Tucson</City>
+	<City>Yuma</City>
+</Province>
+
+<Province Name="California">
+	<City>Beale AFB</City>
+	<City>Edwards AFB</City>
+	<City>Eureka</City>
+	<City>Los Angeles</City>
+	<City>Sacramento</City>
+	<City>San Diego</City>
+	<City>San Francisco</City>
+	<City>San Joaquin Valley</City>
+	<City>Santa Ana Mountains</City>
+	<City>Vandenberg AFB</City>
+</Province>
+
+<Province Name="Colorado">
+	<City>Denver/Boulder</City>
+	<City>Grand Junction</City>
+	<City>Pueblo</City>
+</Province>
+
+<Province Name="Delaware">
+	<City>Dover AFB</City>
+</Province>
+
+<Province Name="Florida">
+	<City>Jacksonville</City>
+	<City>Key West</City>
+	<City>Melbourne</City>
+	<City>Miami</City>
+	<City>Northwest Florida</City>
+	<City>Tallahassee</City>
+	<City>Tampa Bay</City>
+</Province>
+
+<Province Name="Georgia">
+	<City>Atlanta</City>
+	<City>Moody AFB</City>
+	<City>Robins AFB</City>
+</Province>
+
+<Province Name="Hawaii">
+	<City>Kauai</City>
+	<City>Kohala</City>
+	<City>Molokai</City>
+	<City>South Shore Hawaii</City>
+</Province>
+
+<Province Name="Iowa">
+	<City>Des Moines</City>
+	<City>Quad Cities</City>
+</Province>
+
+<Province Name="Idaho">
+	<City>Boise</City>
+	<City>Pocatello/Idaho Falls</City>
+</Province>
+
+<Province Name="Illinois">
+	<City>Central Illinois</City>
+	<City>Chicago</City>
+</Province>
+
+<Province Name="Indiana">
+	<City>Indianapolis</City>
+	<City>Northern Indiana</City>
+</Province>
+
+<Province Name="Kansas">
+	<City>Dodge City</City>
+	<City>Goodland</City>
+	<City>Topeka</City>
+	<City>Wichita</City>
+</Province>
+
+<Province Name="Kentucky">
+	<City>Fort Campbell</City>
+	<City>Jackson</City>
+	<City>Louisville</City>
+	<City>Paducah</City>
+</Province>
+
+<Province Name="Louisiana">
+	<City>Fort Polk</City>
+	<City>Lake Charles</City>
+	<City>New Orleans/Baton Rouge</City>
+	<City>Shreveport</City>
+</Province>
+
+<Province Name="Massachusetts">
+	<City>Boston</City>
+</Province>
+
+<Province Name="Maine">
+	<City>Caribou</City>
+	<City>Portland</City>
+</Province>
+
+<Province Name="Michigan">
+	<City>Detroit</City>
+	<City>Gaylord</City>
+	<City>Grand Rapids/Muskegon</City>
+	<City>Marquette</City>
+</Province>
+
+<Province Name="Minnesota">
+	<City>Duluth</City>
+	<City>Minneapolis</City>
+</Province>
+
+<Province Name="Missouri">
+	<City>Kansas City/Pleasant Hill</City>
+	<City>Springfield</City>
+	<City>St. Louis</City>
+</Province>
+
+<Province Name="Mississippi">
+	<City>Brandon/Jackson</City>
+	<City>Columbus AFB</City>
+</Province>
+
+<Province Name="Montana">
+	<City>Billings</City>
+	<City>Glasgow</City>
+	<City>Great Falls</City>
+	<City>Missoula</City>
+</Province>
+
+<Province Name="North Carolina">
+	<City>Newport/Morehead</City>
+	<City>Raleigh/Durham</City>
+	<City>Shallotte/Wilmington</City>
+</Province>
+
+<Province Name="North Dakota">
+	<City>Bismarck</City>
+	<City>Grand Forks</City>
+	<City>Minot AFB</City>
+</Province>
+
+<Province Name="Nebraska">
+	<City>Hastings</City>
+	<City>North Platte</City>
+	<City>Omaha</City>
+</Province>
+
+<Province Name="New Jersey">
+	<City>Mount Holly</City>
+</Province>
+
+<Province Name="New Mexico">
+	<City>Albuquerque</City>
+	<City>Cannon AFB</City>
+	<City>Holloman AFB</City>
+</Province>
+
+<Province Name="Nevada">
+	<City>Elko</City>
+	<City>Las Vegas</City>
+	<City>Reno</City>
+</Province>
+
+<Province Name="New York">
+	<City>Albany</City>
+	<City>Binghamton</City>
+	<City>Buffalo</City>
+	<City>Montague</City>
+	<City>Upton</City>
+</Province>
+
+<Province Name="Ohio">
+	<City>Cleveland</City>
+	<City>Wilmington</City>
+</Province>
+
+<Province Name="Oklahoma">
+	<City>Frederick</City>
+	<City>Oklahoma City</City>
+	<City>Tulsa</City>
+	<City>Vance AFB</City>
+</Province>
+
+<Province Name="Oregon">
+	<City>Medford</City>
+	<City>Pendleton</City>
+	<City>Portland</City>
+</Province>
+
+<Province Name="Pennsylvania">
+	<City>Pittsburgh</City>
+	<City>State College</City>
+</Province>
+
+<Province Name="Virgin Islands">
+	<City>Puerto Rico/Virgin Islands</City>
+</Province>
+
+<Province Name="South Carolina">
+	<City>Charleston</City>
+	<City>Columbia</City>
+	<City>Greer</City>
+</Province>
+
+<Province Name="South Dakota">
+	<City>Aberdeen</City>
+	<City>Rapid City</City>
+	<City>Sioux Falls</City>
+</Province>
+
+<Province Name="Tennessee">
+	<City>Knoxville/Tri Cities</City>
+	<City>Memphis</City>
+	<City>Nashville</City>
+</Province>
+
+<Province Name="Texas">
+	<City>Amarillo</City>
+	<City>Austin/San Antonio</City>
+	<City>Brownsville</City>
+	<City>Central Texas</City>
+	<City>Corpus Christi</City>
+	<City>Dallas/Fort Worth</City>
+	<City>Dyess AFB</City>
+	<City>El Paso</City>
+	<City>Houston/Galveston</City>
+	<City>Laughlin AFB</City>
+	<City>Lubbock</City>
+	<City>Midland/Odessa</City>
+	<City>San Angelo</City>
+</Province>
+
+<Province Name="Utah">
+	<City>Cedar City</City>
+	<City>Salt Lake City</City>
+</Province>
+
+<Province Name="Virginia">
+	<City>Blacksburg</City>
+	<City>Sterling</City>
+	<City>Wakefield</City>
+</Province>
+
+<Province Name="Vermont">
+	<City>Burlington</City>
+</Province>
+
+<Province Name="Washington">
+	<City>Langley Hill</City>
+	<City>Seattle/Tacoma</City>
+	<City>Spokane</City>
+</Province>
+
+<Province Name="Wisconsin">
+	<City>Green Bay</City>
+	<City>La Crosse</City>
+	<City>Milwaukee</City>
+</Province>
+
+<Province Name="West Virginia">
+	<City>Charleston</City>
+</Province>
+
+<Province Name="Wyoming">
+	<City>Cheyenne</City>
+	<City>Riverton</City>
+</Province>
+</ProvinceCities>
