@@ -66,6 +66,7 @@ namespace Rad
 
                 if(GenericCodeClass.CanadaSelected)
                 {
+                    ProductName.Text = "Radar Product";
                     ProductRadioButton1.Content = "PRECIPET";
                     ProductRadioButton2.Content = "CAPPI";
                     RoadNoCheckBox.Content = "Road Numbers";
@@ -74,10 +75,11 @@ namespace Rad
                 }
                 else
                 {
-                    ProductRadioButton1.Content = "COMPOSITE";
-                    ProductRadioButton2.Content = "BASE";
-                    RoadNoCheckBox.Content = "Counties";
-                    RadarCircleCheckBox.Content = "Warnings";
+                    ProductName.Text = "Radar Reflectivity";
+                    ProductRadioButton1.Content = "Composite";
+                    ProductRadioButton2.Content = "Base";
+                    RoadNoCheckBox.Content = "Warnings";
+                    RadarCircleCheckBox.Content = "Counties";
                 }
             }
         }
