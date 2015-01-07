@@ -107,15 +107,5 @@ namespace Rad
         }
 
         #endregion
-        
-        private async void ECLink_onClick(object sender, RoutedEventArgs e)
-        {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("http://www.ec.gc.ca/meteo-weather/default.asp?lang=En&n=2B931828-1"));
-        }
-
-        private async void NWSLink_onClick(object sender, RoutedEventArgs e)
-        {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("http://weather.noaa.gov/radar/radinfo/radinfo.html"));
-        }
     }
 }

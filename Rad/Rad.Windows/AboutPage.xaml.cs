@@ -23,10 +23,5 @@ namespace Rad
         {
             this.InitializeComponent();
         }
-
-        private async void HyperLink_onClick(object sender, RoutedEventArgs e)
-        {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:scirocco_sw@outlook.com"));
-        }
     }
 }

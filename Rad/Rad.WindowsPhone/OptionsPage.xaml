@@ -41,15 +41,7 @@
                     <RadioButton x:Name="CountryRadioButton2" Grid.Column="1" Content="USA" GroupName="CountryBoxes" />
                 </Grid>
                 <ComboBox x:Name="ProvinceComboBox" Padding="0,0,27,0" Width="auto" SelectionChanged="ProvinceComboBox_SelectionChanged" SelectedIndex="0">
-                    <x:String>Regional Composites</x:String>
-                    <x:String>Alberta</x:String>
-                    <x:String>British Columbia</x:String>
-                    <x:String>Manitoba</x:String>
-                    <x:String>New Brunswick</x:String>
-                    <x:String>Newfoundland &amp; Labrador</x:String>
-                    <x:String>Ontario</x:String>
-                    <x:String>Quebec</x:String>
-                    <x:String>Saskatchewan</x:String>
+                    <x:String></x:String>
                 </ComboBox>
                 <ComboBox x:Name="StationComboBox" />
 
@@ -95,9 +87,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <RadioButton x:Name="DurationRadioButton1" Grid.Column="0" Content="1 hr" GroupName="DurationBoxes" />
-                    <RadioButton x:Name="DurationRadioButton2" Grid.Column="1" Content="3 hr" GroupName="DurationBoxes"/>
+                    <RadioButton x:Name="DurationRadioButton3" Grid.Column="0" Content="Latest" GroupName="DurationBoxes" />
+                    <RadioButton x:Name="DurationRadioButton1" Grid.Column="1" Content="1 hr" GroupName="DurationBoxes" />
+                    <RadioButton x:Name="DurationRadioButton2" Grid.Column="2" Content="3 hr" GroupName="DurationBoxes"/>
                 </Grid>
 
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Loop Speed (time per image)" Margin="0,24,0,0"/>
