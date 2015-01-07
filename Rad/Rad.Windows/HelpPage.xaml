@@ -1,0 +1,98 @@
+﻿<SettingsFlyout
+    x:Class="Rad.HelpPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Rad"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="Help"
+    d:DesignWidth="346">
+
+    <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+
+        <!-- The StackPanel(s) below define individual content sections -->
+
+        <!-- Content Section 1-->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+
+            <!-- Section 1 body -->
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" ZoomMode="Disabled">
+                <RichTextBlock Style="{StaticResource BodyRichTextBlockStyle}">
+                    <Paragraph>
+                    Several image options are provided in the Radar Imagery app, depending on which country is selected.
+                    A  description of each option follows below to help you choose which product is the most suitable.
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph FontWeight="SemiBold">
+                    CANADA
+                </Paragraph>
+                <Paragraph FontStyle="Italic">
+                    CAPPI
+                </Paragraph>
+                <Paragraph>
+                    CAPPI (Constant Altitude Plan Position Indicator) products show radar returns from approximately one height above the ground (i.e. 1.5 km).
+                    These products are produced by making a series of radar beams at different elevation angles.
+                    There is no Doppler processing to filter out clutter.
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph FontStyle="Italic">
+                    PRECIPET
+                </Paragraph>
+                <Paragraph>
+                    PRECIPET products are designed to show precipitation close to the ground.
+                    Doppler processing is used to filter out false echoes from ground objects, such as buildings.
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph FontStyle="Italic">
+                    Rain
+                </Paragraph>
+                <Paragraph>
+                    A less sensitive reflectivity relationship is used for rain, as it returns strong radar signals compared to snow.
+                    CAPPI products show returns from a constant height of 1.0 km above the surface.
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph FontStyle="Italic">
+                    Snow
+                </Paragraph>
+                <Paragraph>
+                    Since snow does not reflect radar beams effectively, a sensitive reflectivity relationship is used.
+                    CAPPI products show returns from a constant height of 1.5 km above the surface.
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph FontWeight="SemiBold">
+                    USA
+                </Paragraph>
+                <Paragraph FontStyle="Italic">
+                    Base Reflectivity
+                </Paragraph>
+                <Paragraph>
+                    Base images are generated from the lowest tilt angle of the antenna at 0.5°.
+                    Returns generally show precipitation near the surface.
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph FontStyle="Italic">
+                    Composite Reflectivity
+                </Paragraph>
+                <Paragraph>
+                    Composite images display the maximum intensity from any elevation height at every distance from the radar.
+                    These products can show storm structures and intensity trends.
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph>
+                    For more information, visit 
+                    <Hyperlink Click="ECLink_onClick">
+                        Environment Canada
+                    </Hyperlink> and the 
+                    <Hyperlink Click="NWSLink_onClick">
+                        National Weather Service
+                    </Hyperlink>.
+                    <LineBreak/>
+                </Paragraph>
+            </RichTextBlock>
+            </ScrollViewer>
+        </StackPanel>
+    </StackPanel>
+</SettingsFlyout>

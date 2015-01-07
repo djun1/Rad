@@ -325,6 +325,11 @@ namespace Rad
             this.Frame.Navigate(typeof(AboutPage));
         }
 
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(HelpPage));
+        }
+
         //Set the state for the navigation buttons. 
         //EnableAll is used to enable/disable all the buttons. If EnableAll is true all buttons are enabled depending on the. 
         //state of the loop. Otherwise they are all disabled.

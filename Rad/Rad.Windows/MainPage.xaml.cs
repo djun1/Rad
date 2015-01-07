@@ -37,6 +37,7 @@ namespace Rad
         private DispatcherTimer DownloadTimer;
         private OptionsPage OptionsPageFlyout = null;
         private AboutPage AboutPageFlyout = null;
+        private HelpPage HelpPageFlyout = null;
       
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -326,7 +327,9 @@ namespace Rad
             args.Request.ApplicationCommands.Add(new SettingsCommand(
                 "Options", "Options", (handler) => ShowCustomSettingFlyout()));
             args.Request.ApplicationCommands.Add(new SettingsCommand(
-                "About", "About", (handler) => ShowAboutFlyout()));            
+                "Help", "Help", (handler) => ShowHelpFlyout()));
+            args.Request.ApplicationCommands.Add(new SettingsCommand(
+                "About", "About", (handler) => ShowAboutFlyout()));
         }
 
         private void ShowCustomSettingFlyout()
@@ -341,6 +344,13 @@ namespace Rad
             if (AboutPageFlyout == null)
                 AboutPageFlyout = new AboutPage();
             AboutPageFlyout.Show();
+        }
+
+        private void ShowHelpFlyout()
+        {
+            if (HelpPageFlyout == null)
+                HelpPageFlyout = new HelpPage();
+            HelpPageFlyout.Show();
         }
        //End settings flyout
 
