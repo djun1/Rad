@@ -34,6 +34,9 @@ static class GenericCodeClass
     private static bool OverlayRoadNos;
     private static bool OverlayCircles;
     private static bool IsCanadaSelected;
+    private static int YearStart;
+    private static int TimeStart;
+    private static int DateStart;
 
     //Provide access to private property specifying Loop timer Interval
     public static TimeSpan LoopInterval
@@ -121,12 +124,6 @@ static class GenericCodeClass
         get { return OverlayCities; }
         set { OverlayCities = value; }
     }
-    
-//    public static bool TownOverlayFlag
-//    {
-//        get { return OverlayTowns; }
-//        set { OverlayTowns = value; }
-//    }
 
     public static bool RoadOverlayFlag
     {
@@ -161,10 +158,10 @@ static class GenericCodeClass
         string Day;
         string Month;
 
-        Time = Filename.Substring(8, 4);
-        Year = Filename.Substring(0, 4);
-        Day = Filename.Substring(6, 2);
-        Month = Filename.Substring(4, 2);
+        Time = Filename.Substring(TimeStart, 4);
+        Year = Filename.Substring(YearStart, 4);
+        Day = Filename.Substring(DateStart+2, 2);
+        Month = Filename.Substring(DateStart, 2);
         LocalDateTime = new DateTime(Convert.ToInt32(Year), Convert.ToInt32(Month), Convert.ToInt32(Day),
             Convert.ToInt32(Time.Substring(0, 2)), Convert.ToInt32(Time.Substring(2, 2)), 0);
         LocalDateTime = LocalDateTime.ToLocalTime();
@@ -172,7 +169,7 @@ static class GenericCodeClass
         return LocalDateTime;
     }
 
-    public static async Task GetListOfLatestFiles(List<string> FileNames)
+    public static async Task GetListOfLatestFiles(List<string> FileNames, List<string> LegendFileNames, List<string> WarningFileNames)
     {
         var URI = new Uri(HomeStationURL);
         string StartDateTimeString;
@@ -190,6 +187,9 @@ static class GenericCodeClass
         }
         
         FileNames.Clear();
+        LegendFileNames.Clear();
+        WarningFileNames.Clear();
+
 
         if (Client == null)
             Client = new HttpClient();
@@ -198,36 +198,66 @@ static class GenericCodeClass
         DateTime CurrDateTime = DateTime.Now.ToUniversalTime();
         DateTime StartOfYearDate = new DateTime(CurrDateTime.Year - 1, 12, 31);
         DateTime StartDateTime = CurrDateTime.Subtract(new TimeSpan(DownloadPeriod, 0, 0));    //Subtract 3 hours from the Current Time
-        TimeSpan NoOfDays = CurrDateTime.Subtract(StartOfYearDate);
+        //TimeSpan NoOfDays = CurrDateTime.Subtract(StartOfYearDate);
 
         Client.DefaultRequestHeaders.IfModifiedSince = StartDateTime;
         var HttpClientTask = Client.GetAsync(URI);
 
-        StartDateTimeString = StartDateTime.Year.ToString() + StartDateTime.Month.ToString("D2") +StartDateTime.Day.ToString("D2") + StartDateTime.Hour.ToString("D2") + StartDateTime.Minute.ToString("D2")
+        if(IsCanadaSelected)
+        {
+            StartDateTimeString = StartDateTime.Year.ToString() + StartDateTime.Month.ToString("D2") + StartDateTime.Day.ToString("D2") + StartDateTime.Hour.ToString("D2") + StartDateTime.Minute.ToString("D2")
             + "_" + HomeStationCode + "_" + RadarType + "_" + PrecipitationType + ".gif";
 
-        RegExpString = ">[0-9]+_[A-Z]+_" + RadarType + "_" + PrecipitationType + ".gif<";
+            RegExpString = ">[0-9]+_[A-Z]+_" + RadarType + "_" + PrecipitationType + ".gif<";
 
-        if (RadarType.Equals("CAPPI"))
-        {
-            if(PrecipitationType.Equals("SNOW"))
+            if (RadarType.Equals("CAPPI"))
             {
-                StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 8, "1.0_");
-                RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.0_");
+                if (PrecipitationType.Equals("SNOW"))
+                {
+                    StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 8, "1.0_");
+                    RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.0_");
+                }
+                else
+                {
+                    StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 8, "1.5_");
+                    RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.5_");
+                }
+
+            }
+
+            if (HomeProvince.Equals("Regional Composites"))
+            {
+                StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 4, "_WT");
+                RegExpString = RegExpString.Insert(RegExpString.Length - 5, "_WT");
+            }
+            YearStart = 0;
+            DateStart = 4;
+            TimeStart = 8;
+        }
+        else
+        {
+            if (HomeProvince.Equals("Regional Composites"))
+            {
+                StartDateTimeString = HomeStationCode + "_" + StartDateTime.Year.ToString() + StartDateTime.Month.ToString("D2") + StartDateTime.Day.ToString("D2")
+                    + "_" + StartDateTime.Hour.ToString("D2") + StartDateTime.Minute.ToString("D2") + ".gif";
+                RegExpString = ">" + HomeStationCode + "_[0-9]+_[0-9]+.gif<";
+                YearStart = HomeStationCode.Length + 1;
+                DateStart = YearStart + 4;
+                TimeStart = DateStart + 5;
+
             }
             else
             {
-                StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 8, "1.5_");
-                RegExpString = RegExpString.Insert(RegExpString.Length - 9, "1.5_");
-            }
-            
-        }
+                StartDateTimeString = HomeStationCode + "_" + StartDateTime.Year.ToString() + StartDateTime.Month.ToString("D2") + StartDateTime.Day.ToString("D2") + "_" + StartDateTime.Hour.ToString("D2") + StartDateTime.Minute.ToString("D2")
+            + "_" + RadarType + ".gif";
 
-        if (HomeProvince.Equals("Regional Composites"))
-        {
-            StartDateTimeString = StartDateTimeString.Insert(StartDateTimeString.Length - 4, "_WT");
-            RegExpString = RegExpString.Insert(RegExpString.Length - 5, "_WT");
+                RegExpString = ">[A-Z]+_[0-9]+_[0-9]+_" + RadarType + ".gif<";
+                YearStart = 4;
+                DateStart = 8;
+                TimeStart = 13;
+            }
         }
+        
         
         FileNames.Add(StartDateTimeString);
         RegExp = new Regex(RegExpString);
@@ -263,6 +293,14 @@ static class GenericCodeClass
                 FileNames.Sort();
                 Location = FileNames.IndexOf(StartDateTimeString);
                 FileNames.RemoveRange(0, Location + 1);
+                if (!IsCanadaSelected && !HomeProvince.Equals("Regional Composites"))
+                {
+                    foreach (string str in FileNames)
+                    {
+                        LegendFileNames.Add(str.Replace(".gif", "_Legend.gif"));
+                        WarningFileNames.Add(str.Replace(GenericCodeClass.RadarTypeString + ".gif", "Warnings.gif"));
+                    }
+                }
             }
         }
         else

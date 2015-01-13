@@ -37,6 +37,42 @@ namespace Rad
             
         }
 
+        public BitmapImage LegendSource
+        {
+            set {LegendOverlay.Source = value; }
+            get { return (BitmapImage)LegendOverlay.Source; }
+        }
+
+        public Visibility LegendOverlayVisibility
+        {
+            set {LegendOverlay.Visibility = value; }
+            get { return LegendOverlay.Visibility; }
+        }
+
+        public BitmapImage WarningsSource
+        {
+            set {WarningsOverlay.Source = value; }
+            get { return (BitmapImage)WarningsOverlay.Source; }
+        }
+
+        public Visibility WarningsOverlayVisibility
+        {
+            set {WarningsOverlay.Visibility = value; }
+            get { return WarningsOverlay.Visibility; }
+        }
+
+        public BitmapImage CountiesSource
+        {
+            set {CountiesOverlay.Source = value; }
+            get { return (BitmapImage)CountiesOverlay.Source; }
+        }
+
+        public BitmapImage TopoBackgroundSource
+        {
+            set { TopoBackground.Source = value; }
+            get { return (BitmapImage)TopoBackground.Source; }
+        }
+
         public BitmapImage ImgSource
         {
             set 
@@ -133,6 +169,12 @@ namespace Rad
         {
             set { RadarCircleOverlay.Visibility = value; }
             get { return RadarCircleOverlay.Visibility; }
+        }
+
+        public Visibility CountiesOverlayVisibility
+        {
+            set {CountiesOverlay.Visibility = value; }
+            get { return CountiesOverlay.Visibility; }
         }
     }
 }

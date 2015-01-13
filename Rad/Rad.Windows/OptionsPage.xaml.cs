@@ -26,10 +26,172 @@ namespace Rad
         private static String ChosenPrecipitationType;
         private static XMLParserClass ProvincialCityXML = new XMLParserClass("ProvinceCities.xml");
         private static XMLParserClass CityCodeXML = new XMLParserClass("CityCodes.xml");
+        private static bool CanadaSelected;
 
         public OptionsPage()
         {
             this.InitializeComponent();
+        }
+
+        private void OptionsPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            switch (GenericCodeClass.FileDownloadPeriod)
+            {
+                case 1:
+                    DurationRadioButton1.IsChecked = true;
+                    break;
+                case 3:
+                    DurationRadioButton2.IsChecked = true;
+                    break;
+            }
+
+            switch (GenericCodeClass.LoopInterval.Milliseconds)
+            {
+                case 0:
+                    if (GenericCodeClass.LoopInterval.Seconds == 1)
+                        LoopTimerRadioButton3.IsChecked = true;
+                    break;
+                case 500:
+                    LoopTimerRadioButton2.IsChecked = true;
+                    break;
+                case 100:
+                    LoopTimerRadioButton1.IsChecked = true;
+                    break;
+                case 1000:
+                    LoopTimerRadioButton3.IsChecked = true;
+                    break;
+            }
+
+            switch (GenericCodeClass.RadarTypeString)
+            {
+                case "PRECIPET":
+                case "N0R":
+                    ProductRadioButton1.IsChecked = true;
+                    break;
+                case "CAPPI":
+                case "NCR":
+                    ProductRadioButton2.IsChecked = true;
+                    break;
+            }
+
+            switch (GenericCodeClass.PrecipitationTypeString)
+            {
+                case "RAIN":
+                    PrecipitationRadioButton1.IsChecked = true;
+                    break;
+                case "SNOW":
+                    PrecipitationRadioButton2.IsChecked = true;
+                    break;
+            }
+
+            CanadaSelected = GenericCodeClass.CanadaSelected;
+            CountryRadioButton1.IsChecked = CanadaSelected;
+            CountryRadioButton2.IsChecked = !CanadaSelected;
+
+            if (CanadaSelected)
+            {
+                ProvincialCityXML.SetSourceFile("ProvinceCities.xml");
+                CityCodeXML.SetSourceFile("CityCodes.xml");
+            }
+            else
+            {
+                ProvincialCityXML.SetSourceFile("USStateCities.xml");
+                CityCodeXML.SetSourceFile("USCityCodes.xml");
+            }
+
+            PopulateProvinceBox(true);
+            //ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
+            PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString(), true);
+            SetOptions();
+            //StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
+
+            CityCheckBox.IsChecked = GenericCodeClass.CityOverlayFlag;
+            RoadNoCheckBox.IsChecked = GenericCodeClass.RoadNoOverlayFlag;
+            RoadCheckBox.IsChecked = GenericCodeClass.RoadOverlayFlag;
+            RadarCircleCheckBox.IsChecked = GenericCodeClass.RadarCircleOverlayFlag;
+
+            CountryRadioButton1.Checked += CountryRadioButton_CheckedHandler;
+            CountryRadioButton2.Checked += CountryRadioButton_CheckedHandler;
+            //ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
+
+        }
+
+        private void OptionsPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ChosenCityName = StationComboBox.Items[StationComboBox.SelectedIndex].ToString();
+
+            if (ProductRadioButton1.IsChecked == true)
+            {
+                if (CanadaSelected)
+                    ChosenRadarType = "PRECIPET";
+                else
+                    ChosenRadarType = "N0R";    //Base
+            }
+            else if (ProductRadioButton2.IsChecked == true)
+            {
+                if (CanadaSelected)
+                    ChosenRadarType = "CAPPI";
+                else
+                    ChosenRadarType = "NCR";    //Composite
+            }
+
+            if (PrecipitationRadioButton1.IsChecked == true)
+                ChosenPrecipitationType = "RAIN";
+            else if (PrecipitationRadioButton2.IsChecked == true)
+                ChosenPrecipitationType = "SNOW";
+
+            GenericCodeClass.HomeStationChanged = !ChosenCityName.Equals(GenericCodeClass.HomeStationName)
+                                                    || !ChosenRadarType.Equals(GenericCodeClass.RadarTypeString)
+                                                    || !ChosenPrecipitationType.Equals(GenericCodeClass.PrecipitationTypeString);
+
+            if (GenericCodeClass.HomeStationChanged)
+            {
+                if (StationComboBox != null)
+                {
+                    GenericCodeClass.HomeStationCodeString = CityCodeXML.GetCityCode(StationComboBox.Items[StationComboBox.SelectedIndex].ToString()); //Change this to ChosenCityCode?
+                    if (CanadaSelected)
+                    {
+                        GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + GenericCodeClass.HomeStationCodeString + "/"; //Change this to ChosenCityCode?
+                    }
+                    else
+                    {
+                        if (ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].Equals("Regional Composites"))
+                            GenericCodeClass.HomeStation = "http://radar.weather.gov/Conus/RadarImg/"; //Change this to ChosenCityCode?
+                        else
+                            GenericCodeClass.HomeStation = "http://radar.weather.gov/ridge/RadarImg/" + ChosenRadarType + "/" + GenericCodeClass.HomeStationCodeString + "/"; //Change this to ChosenCityCode?
+                    }
+
+                }
+
+                GenericCodeClass.HomeStationName = StationComboBox.Items[StationComboBox.SelectedIndex].ToString();
+                GenericCodeClass.HomeProvinceName = ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString();
+                GenericCodeClass.RadarTypeString = ChosenRadarType;
+                GenericCodeClass.PrecipitationTypeString = ChosenPrecipitationType;
+                GenericCodeClass.CanadaSelected = CanadaSelected;
+            }
+
+            //Better to check for existing download intervals before setting new times?
+            if (DurationRadioButton1.IsChecked == true)
+                GenericCodeClass.FileDownloadPeriod = 1;
+            else if (DurationRadioButton2.IsChecked == true)
+                GenericCodeClass.FileDownloadPeriod = 3;
+
+            if (LoopTimerRadioButton1.IsChecked == true)
+                GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 100);
+            else if (LoopTimerRadioButton2.IsChecked == true)
+                GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 500);
+            else
+                GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 1000);
+
+            GenericCodeClass.CityOverlayFlag = (bool)CityCheckBox.IsChecked;
+            //            GenericCodeClass.TownOverlayFlag = (bool)TownCheckBox.IsChecked;
+            GenericCodeClass.RoadOverlayFlag = (bool)RoadCheckBox.IsChecked;
+            GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
+            GenericCodeClass.RadarCircleOverlayFlag = (bool)RadarCircleCheckBox.IsChecked;
+
+            if (SettingsChanged != null)
+                SettingsChanged(this, EventArgs.Empty);
+
         }
 
         private void ProvinceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,13 +211,13 @@ namespace Rad
 
                 ProductRadioButton1.IsEnabled = true;
                 ProductRadioButton2.IsEnabled = !isCompositeSelected;
-                ProductRadioButton2.IsChecked = !isCompositeSelected && GenericCodeClass.RadarTypeString.Equals("CAPPI");
-                ProductRadioButton1.IsChecked = isCompositeSelected || GenericCodeClass.RadarTypeString.Equals("PRECIPET");
+                ProductRadioButton2.IsChecked = !isCompositeSelected && (GenericCodeClass.RadarTypeString.Equals("CAPPI") || GenericCodeClass.RadarTypeString.Equals("NCR"));
+                ProductRadioButton1.IsChecked = isCompositeSelected || (GenericCodeClass.RadarTypeString.Equals("PRECIPET") || GenericCodeClass.RadarTypeString.Equals("N0R"));
 
-                PrecipitationRadioButton1.IsEnabled = GenericCodeClass.CanadaSelected;
-                PrecipitationRadioButton2.IsEnabled = GenericCodeClass.CanadaSelected;
+                PrecipitationRadioButton1.IsEnabled = CanadaSelected;
+                PrecipitationRadioButton2.IsEnabled = CanadaSelected;
 
-                CityCheckBox.IsEnabled = !isCompositeSelected || (isCompositeSelected && GenericCodeClass.CanadaSelected);
+                CityCheckBox.IsEnabled = !isCompositeSelected || (isCompositeSelected && CanadaSelected);
                 RadarCircleCheckBox.IsEnabled = !isCompositeSelected;
                 RoadCheckBox.IsEnabled = !isCompositeSelected;
                 RoadNoCheckBox.IsEnabled = !isCompositeSelected;
@@ -64,7 +226,7 @@ namespace Rad
                 RoadCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RoadOverlayFlag;
                 RoadNoCheckBox.IsChecked = !isCompositeSelected && GenericCodeClass.RoadNoOverlayFlag;
 
-                if(GenericCodeClass.CanadaSelected)
+                if(CanadaSelected)
                 {
                     ProductName.Text = "Radar Product";
                     ProductRadioButton1.Content = "PRECIPET";
@@ -76,8 +238,8 @@ namespace Rad
                 else
                 {
                     ProductName.Text = "Radar Reflectivity";
-                    ProductRadioButton1.Content = "Composite";
-                    ProductRadioButton2.Content = "Base";
+                    ProductRadioButton1.Content = "Base";
+                    ProductRadioButton2.Content = "Composite";
                     RoadNoCheckBox.Content = "Warnings";
                     RadarCircleCheckBox.Content = "Counties";
                 }
@@ -112,141 +274,9 @@ namespace Rad
                 SettingsChanged(this, EventArgs.Empty);
         }
 
-        private void OptionsPage_Unloaded(object sender, RoutedEventArgs e)
-        {
-            ChosenCityName = StationComboBox.Items[StationComboBox.SelectedIndex].ToString();
+        
 
-            if (ProductRadioButton1.IsChecked == true)
-                ChosenRadarType = "PRECIPET";
-            else if (ProductRadioButton2.IsChecked == true)
-                ChosenRadarType = "CAPPI";
-
-            if (PrecipitationRadioButton1.IsChecked == true)
-                ChosenPrecipitationType = "RAIN";
-            else if (PrecipitationRadioButton2.IsChecked == true)
-                ChosenPrecipitationType = "SNOW";
-
-            GenericCodeClass.HomeStationChanged = !ChosenCityName.Equals(GenericCodeClass.HomeStationName)
-                                                    || !ChosenRadarType.Equals(GenericCodeClass.RadarTypeString)
-                                                    || !ChosenPrecipitationType.Equals(GenericCodeClass.PrecipitationTypeString);
-
-            if (GenericCodeClass.HomeStationChanged)
-            {
-                if (StationComboBox != null)
-                {
-                    GenericCodeClass.HomeStationCodeString = CityCodeXML.GetCityCode(StationComboBox.Items[StationComboBox.SelectedIndex].ToString()); //Change this to ChosenCityCode?
-                    GenericCodeClass.HomeStation = "http://dd.weatheroffice.gc.ca/radar/" + ChosenRadarType + "/GIF/" + GenericCodeClass.HomeStationCodeString + "/"; //Change this to ChosenCityCode?
-                }
-
-                GenericCodeClass.HomeStationName = StationComboBox.Items[StationComboBox.SelectedIndex].ToString();
-                GenericCodeClass.HomeProvinceName = ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString();
-                GenericCodeClass.RadarTypeString = ChosenRadarType;
-                GenericCodeClass.PrecipitationTypeString = ChosenPrecipitationType;              
-            }
-            
-            //Better to check for existing download intervals before setting new times?
-            if (DurationRadioButton1.IsChecked == true)
-                GenericCodeClass.FileDownloadPeriod = 1;
-            else if (DurationRadioButton2.IsChecked == true)
-                GenericCodeClass.FileDownloadPeriod = 3;
-            
-            if (LoopTimerRadioButton1.IsChecked == true)
-                GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 100);
-            else if (LoopTimerRadioButton2.IsChecked == true)
-                GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 500);
-            else
-                GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 1000);
-
-            GenericCodeClass.CityOverlayFlag = (bool)CityCheckBox.IsChecked;
-//            GenericCodeClass.TownOverlayFlag = (bool)TownCheckBox.IsChecked;
-            GenericCodeClass.RoadOverlayFlag = (bool)RoadCheckBox.IsChecked;
-            GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
-            GenericCodeClass.RadarCircleOverlayFlag = (bool)RadarCircleCheckBox.IsChecked;
-
-            if (SettingsChanged != null)
-                SettingsChanged(this, EventArgs.Empty);
-
-        }
-
-        private void OptionsPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            switch (GenericCodeClass.FileDownloadPeriod)
-            {
-                case 1:
-                    DurationRadioButton1.IsChecked = true;
-                    break;
-                case 3:
-                    DurationRadioButton2.IsChecked = true;
-                    break;
-            }
-
-            switch (GenericCodeClass.LoopInterval.Milliseconds)
-            {
-                case 0:
-                    if (GenericCodeClass.LoopInterval.Seconds == 1)
-                        LoopTimerRadioButton3.IsChecked = true;
-                    break;
-                case 500:
-                    LoopTimerRadioButton2.IsChecked = true;
-                    break;
-                case 100:
-                    LoopTimerRadioButton1.IsChecked = true;
-                    break;
-                case 1000:
-                    LoopTimerRadioButton3.IsChecked = true;
-                    break;
-            }
-
-            switch(GenericCodeClass.RadarTypeString)
-            {
-                case "PRECIPET":
-                    ProductRadioButton1.IsChecked = true;
-                    break;
-                case "CAPPI":
-                    ProductRadioButton2.IsChecked = true;
-                    break;                
-            }
-
-            switch (GenericCodeClass.PrecipitationTypeString)
-            {                
-                case "RAIN":
-                    PrecipitationRadioButton1.IsChecked = true;
-                    break;
-                case "SNOW":
-                    PrecipitationRadioButton2.IsChecked = true;
-                    break;
-            }
-
-            CountryRadioButton1.IsChecked = GenericCodeClass.CanadaSelected;
-            CountryRadioButton2.IsChecked = !GenericCodeClass.CanadaSelected;
-
-            if(GenericCodeClass.CanadaSelected)
-            {
-                ProvincialCityXML.SetSourceFile("ProvinceCities.xml");
-                CityCodeXML.SetSourceFile("CityCodes.xml");
-            }
-            else
-            {
-                ProvincialCityXML.SetSourceFile("USStateCities.xml");
-                CityCodeXML.SetSourceFile("USCityCodes.xml");
-            }
-
-            PopulateProvinceBox(true);
-            //ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
-            PopulateStationBox(ProvinceComboBox.SelectedIndex,ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString(),true);
-            SetOptions();
-            //StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
-
-            CityCheckBox.IsChecked = GenericCodeClass.CityOverlayFlag;
-            RoadNoCheckBox.IsChecked = GenericCodeClass.RoadNoOverlayFlag;
-            RoadCheckBox.IsChecked = GenericCodeClass.RoadOverlayFlag;
-            RadarCircleCheckBox.IsChecked = GenericCodeClass.RadarCircleOverlayFlag;
-
-            CountryRadioButton1.Checked += CountryRadioButton_CheckedHandler;
-            CountryRadioButton2.Checked += CountryRadioButton_CheckedHandler;
-            //ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
-
-        }
+        
 
         private void PopulateStationBox(int ProvinceBoxIndex, string ProvinceName, bool UseHomeStationValue)
         {
@@ -322,19 +352,19 @@ namespace Rad
         {
             if(sender == CountryRadioButton1)
             {
-                if (GenericCodeClass.CanadaSelected)
+                if (CanadaSelected)
                     return;
                 ProvincialCityXML.SetSourceFile("ProvinceCities.xml");
                 CityCodeXML.SetSourceFile("CityCodes.xml");
-                GenericCodeClass.CanadaSelected = true;
+                CanadaSelected = true;
             }
             else if (sender == CountryRadioButton2)
             {
-                if (!GenericCodeClass.CanadaSelected)
+                if (!CanadaSelected)
                     return;
                 ProvincialCityXML.SetSourceFile("USStateCities.xml");
                 CityCodeXML.SetSourceFile("USCityCodes.xml");
-                GenericCodeClass.CanadaSelected = false;
+                CanadaSelected = false;
             }
 
             
