@@ -297,6 +297,16 @@ static class GenericCodeClass
                 {
                     Location = FileNames.IndexOf(StartDateTimeString);
                     FileNames.RemoveRange(0, Location + 1);
+
+                    if (FileNames.Count > 9) //Display a mximum of 9 files in the loop.
+                    {
+                        //Remove every other file starting from the second oldest
+                        int Index;
+                        int NoOfFilesToRemove = FileNames.Count - 9;
+
+                        for (Index = 1; Index <= FileNames.Count && NoOfFilesToRemove > 0; Index += 1, NoOfFilesToRemove--)
+                            FileNames.RemoveAt(Index);
+                    }
                 }
                 else
                 {
