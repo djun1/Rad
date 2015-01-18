@@ -37,6 +37,9 @@ namespace Rad
         {
             switch (GenericCodeClass.FileDownloadPeriod)
             {
+                case 0:
+                    DurationRadioButton3.IsChecked = true;
+                    break;
                 case 1:
                     DurationRadioButton1.IsChecked = true;
                     break;
@@ -175,6 +178,8 @@ namespace Rad
                 GenericCodeClass.FileDownloadPeriod = 1;
             else if (DurationRadioButton2.IsChecked == true)
                 GenericCodeClass.FileDownloadPeriod = 3;
+            else if (DurationRadioButton3.IsChecked == true)
+                GenericCodeClass.FileDownloadPeriod = 0;
 
             if (LoopTimerRadioButton1.IsChecked == true)
                 GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 100);

@@ -123,7 +123,8 @@ namespace Rad
                 if(!GenericCodeClass.IsLoopPaused)
                     LoopTimer.Start();
                 DownloadTimer.Start();
-                SetNavigationButtonState(GenericCodeClass.IsLoopPaused,true);
+                if(GenericCodeClass.FileDownloadPeriod != 0)
+                    SetNavigationButtonState(GenericCodeClass.IsLoopPaused,true);
                 SetOverlayVisibilities(false);
             }
             else
@@ -270,7 +271,7 @@ namespace Rad
 
             FileDownloadProgBar.Visibility = Visibility.Collapsed;
 
-            if (Files.Count > 1)
+            if (Files.Count > 0)
             {
                 CurrImgIndex = 0;
                 await ChangeImage(CurrImgIndex);
@@ -458,7 +459,8 @@ namespace Rad
             }
             else
             {
-                SetNavigationButtonState(GenericCodeClass.IsLoopPaused, true);
+                if(GenericCodeClass.FileDownloadPeriod != 0)
+                    SetNavigationButtonState(GenericCodeClass.IsLoopPaused, true);
                 if (GenericCodeClass.HomeStationChanged == false)
                     SetOverlayVisibilities(false);
                 if (GenericCodeClass.IsLoopPaused == false)
