@@ -197,7 +197,12 @@ static class GenericCodeClass
         //string RegExpString = ">\\s*";
         DateTime CurrDateTime = DateTime.Now.ToUniversalTime();
         //DateTime StartOfYearDate = new DateTime(CurrDateTime.Year - 1, 12, 31);
-        DateTime StartDateTime = CurrDateTime.Subtract(new TimeSpan(DownloadPeriod, 0, 0));    //Subtract 3 hours from the Current Time
+        DateTime StartDateTime;
+        if(DownloadPeriod != 0)
+            StartDateTime = CurrDateTime.Subtract(new TimeSpan(DownloadPeriod, 0, 0));    //Subtract 3 hours from the Current Time
+        else
+            StartDateTime = CurrDateTime.Subtract(new TimeSpan(1, 0, 0));    //Subtract 3 hours from the Current Time
+
         //TimeSpan NoOfDays = CurrDateTime.Subtract(StartOfYearDate);
 
         Client.DefaultRequestHeaders.IfModifiedSince = StartDateTime;
