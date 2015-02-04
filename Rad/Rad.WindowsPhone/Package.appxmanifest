@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="5c96c922-7273-46b7-94bf-026f25f33a12" Publisher="CN=Daniel" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="5c96c922-7273-46b7-94bf-026f25f33a12" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="9241SciroccoSoftware.RadarImagery" Publisher="CN=B0C3EE66-7C4D-418C-B4FE-1B15D5CAFF9C" Version="1.1.0.1" />
+  <mp:PhoneIdentity PhoneProductId="a105f3a5-f4e3-4b9f-9d4e-4ba2bf77f761" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Rad.WindowsPhone</DisplayName>
-    <PublisherDisplayName>Daniel</PublisherDisplayName>
+    <DisplayName>Radar Imagery</DisplayName>
+    <PublisherDisplayName>Scirocco Software</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -16,8 +16,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Rad.WindowsPhone.App">
-      <m3:VisualElements DisplayName="Rad.WindowsPhone" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Rad.WindowsPhone" ForegroundText="light" BackgroundColor="transparent">
-        <m3:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png" Wide310x150Logo="Assets\Wide310x150Logo.png">
+      <m3:VisualElements DisplayName="Radar Imagery" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="The Radar Imagery app provides a quick source of advanced weather information from Environment Canada and the National Oceanic and the National Weather Service (NWS) for mobile users on the go." ForegroundText="light" BackgroundColor="transparent">
+        <m3:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png">
           <m3:ShowNameOnTiles>
             <m3:ShowOn Tile="square150x150Logo" />
           </m3:ShowNameOnTiles>

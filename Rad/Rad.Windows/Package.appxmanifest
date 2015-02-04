@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="9ebcca65-4bc0-4c83-b2da-a6bf4b0e9754" Publisher="CN=Daniel" Version="1.0.0.0" />
+  <Identity Name="9241SciroccoSoftware.RadarImagery" Publisher="CN=B0C3EE66-7C4D-418C-B4FE-1B15D5CAFF9C" Version="1.1.0.1" />
   <Properties>
-    <DisplayName>Rad.Windows</DisplayName>
+    <DisplayName>Radar Imagery</DisplayName>
     <PublisherDisplayName>Scirocco Software</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Rad.Windows.App">
-      <m2:VisualElements DisplayName="Radar Imagery" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="Rad.Windows" ForegroundText="light" BackgroundColor="#006738">
+      <m2:VisualElements DisplayName="Radar Imagery" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="The Radar Imagery app provides a quick source of advanced weather information from Environment Canada and the National Oceanic and the National Weather Service (NWS) for mobile users on the go." ForegroundText="light" BackgroundColor="#006738">
         <m2:DefaultTile ShortName="Radar Imagery" Wide310x150Logo="Assets\Wide310x150Logo.png" Square70x70Logo="Assets\Square70x70Logo.png">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
