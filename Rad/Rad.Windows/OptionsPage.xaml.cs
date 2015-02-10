@@ -103,11 +103,9 @@ namespace Rad
             }
 
             PopulateProvinceBox(true);
-            //ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
             PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString(), true);
             SetOptions();
-            //StationComboBox.SelectedItem = GenericCodeClass.HomeStationName;
-
+            
             CityCheckBox.IsChecked = GenericCodeClass.CityOverlayFlag;
             RoadNoCheckBox.IsChecked = GenericCodeClass.RoadNoOverlayFlag;
             RoadCheckBox.IsChecked = GenericCodeClass.RoadOverlayFlag;
@@ -115,7 +113,7 @@ namespace Rad
 
             CountryRadioButton1.Checked += CountryRadioButton_CheckedHandler;
             CountryRadioButton2.Checked += CountryRadioButton_CheckedHandler;
-            //ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
+            
 
         }
 
@@ -189,7 +187,6 @@ namespace Rad
                 GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 1000);
 
             GenericCodeClass.CityOverlayFlag = (bool)CityCheckBox.IsChecked;
-            //            GenericCodeClass.TownOverlayFlag = (bool)TownCheckBox.IsChecked;
             GenericCodeClass.RoadOverlayFlag = (bool)RoadCheckBox.IsChecked;
             GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
             GenericCodeClass.RadarCircleOverlayFlag = (bool)RadarCircleCheckBox.IsChecked;
@@ -277,11 +274,7 @@ namespace Rad
 
             if (SettingsChanged != null)
                 SettingsChanged(this, EventArgs.Empty);
-        }
-
-        
-
-        
+        }        
 
         private void PopulateStationBox(int ProvinceBoxIndex, string ProvinceName, bool UseHomeStationValue)
         {
@@ -309,50 +302,7 @@ namespace Rad
                     StationComboBox.SelectedIndex = 0;
             }            
         }
-
-        //private void CountryRadioButton1_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    List<string> ProvinceList;
-        //    ProvincialCityXML.SetSourceFile("ProvinceCities.xml");
-        //    CityCodeXML.SetSourceFile("CityCodes.xml");
-
-        //    ProvinceList = ProvincialCityXML.ReadProvinceList();
-        //    if(ProvinceComboBox != null)
-        //    {
-        //        ProvinceComboBox.SelectionChanged -= ProvinceComboBox_SelectionChanged;
-        //        ProvinceComboBox.Items.Clear();
-
-        //        foreach (string str in ProvinceList)
-        //            ProvinceComboBox.Items.Add(str);
-        //        ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
-        //        ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
-
-        //        //PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
-        //    }
                 
-        //}
-
-        //private void CountryRadioButton2_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    List<string> ProvinceList;
-        //    ProvincialCityXML.SetSourceFile("USStateCities.xml");
-        //    CityCodeXML.SetSourceFile("USCityCodes.xml");
-        //    ProvinceList = ProvincialCityXML.ReadProvinceList();
-
-        //    if (ProvinceComboBox != null)
-        //    {
-        //        ProvinceComboBox.SelectionChanged -= ProvinceComboBox_SelectionChanged;
-        //        ProvinceComboBox.Items.Clear();
-
-        //        foreach (string str in ProvinceList)
-        //            ProvinceComboBox.Items.Add(str);
-        //        ProvinceComboBox.SelectionChanged += ProvinceComboBox_SelectionChanged;
-        //        ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
-        //        //PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
-        //    }
-                
-        //}
-
         private void CountryRadioButton_CheckedHandler(object sender, RoutedEventArgs e)
         {
             if(sender == CountryRadioButton1)
@@ -394,8 +344,6 @@ namespace Rad
                     ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
                 else
                     ProvinceComboBox.SelectedIndex = 0;
-
-                //PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
             }
 
         }

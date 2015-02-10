@@ -235,7 +235,6 @@ namespace Rad
                 GenericCodeClass.LoopInterval = new TimeSpan(0, 0, 0, 0, 1000);
 
             GenericCodeClass.CityOverlayFlag = (bool)CityCheckBox.IsChecked;
-            //            GenericCodeClass.TownOverlayFlag = (bool)TownCheckBox.IsChecked;
             GenericCodeClass.RoadOverlayFlag = (bool)RoadCheckBox.IsChecked;
             GenericCodeClass.RoadNoOverlayFlag = (bool)RoadNoCheckBox.IsChecked;
             GenericCodeClass.RadarCircleOverlayFlag = (bool)RadarCircleCheckBox.IsChecked;
@@ -391,8 +390,6 @@ namespace Rad
                     ProvinceComboBox.SelectedItem = GenericCodeClass.HomeProvinceName;
                 else
                     ProvinceComboBox.SelectedIndex = 0;
-
-                //PopulateStationBox(ProvinceComboBox.SelectedIndex, ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].ToString());
             }
 
         }

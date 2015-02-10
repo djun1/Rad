@@ -81,9 +81,9 @@ namespace Rad
         /// session. The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            Task GetFileNamesTask, DeleteFilesTask, DownloadFilesTask;
-            var LoadingimageUri = new Uri("ms-appx:///Assets/Loading.png");
-            ImgBox.ImgSource = new BitmapImage(LoadingimageUri);
+            Task GetFileNamesTask, DownloadFilesTask; //DeleteFilesTask,
+            //SetSystemImage("ms-appx:///Assets/Loading.png");
+            
             GenericCodeClass.GetSavedAppData();
 			GetFileNamesTask = GenericCodeClass.GetListOfLatestFiles(Files, LegendFiles, WarningsFiles);
             LoadOverlayImages();
@@ -122,11 +122,9 @@ namespace Rad
             else
             {
                 //Show Error Message
-                Uri ImageUri = new Uri("ms-appx:///Assets/Error.png");
-                BitmapImage bitmap = ImgBox.ImgSource as BitmapImage;
-
-                if (bitmap != null && bitmap.UriSource != null && bitmap.UriSource.AbsoluteUri != "ms-appx:/Assets/Error.png")
-                    ImgBox.ImgSource = new BitmapImage(ImageUri);
+                //SetSystemImage("ms-appx:///Assets/Error.png");
+                StatusBox.Text = "Error Downloading Images";
+                ImgBox.MakeImagesInvisible();
             }
 
             GenericCodeClass.HomeStationChanged = false;
@@ -312,20 +310,9 @@ namespace Rad
             }
             else
             {
-                Uri ImageUri = new Uri("ms-appx:///Assets/Error.png");
-                BitmapImage bitmap = ImgBox.ImgSource as BitmapImage;
-
-                try
-                {
-                    if (bitmap != null && bitmap.UriSource.AbsoluteUri != "ms-appx:/Assets/Error.png")
-                        ImgBox.ImgSource = new BitmapImage(ImageUri);
-                }
-                catch
-                {
-                    ImgBox.ImgSource = new BitmapImage(ImageUri);
-                }
-                
+                //SetSystemImage("ms-appx:///Assets/Error.png");
                 StatusBox.Text = "Error Downloading Images";
+                ImgBox.MakeImagesInvisible();
             }
 
             if (GenericCodeClass.IsLoopPaused == false)
@@ -435,7 +422,6 @@ namespace Rad
             else
             {
                 ImgBox.CitiesOverlayVisibility = Visibility.Collapsed;
-//                ImgBox.TownsOverlayVisibility = Visibility.Collapsed;
                 ImgBox.RoadsOverlayVisibility = Visibility.Collapsed;
                 ImgBox.RoadNosOverlayVisibility = Visibility.Collapsed;
                 ImgBox.RadarCircleOverlayVisibility = Visibility.Collapsed;
@@ -450,7 +436,6 @@ namespace Rad
             {
                 ImgBox.TopoBackgroundSource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/USA/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString + "_Topo_Short.jpg"));
                 ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/USA/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString + "_City_Short.gif")); ;
-                //ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/USA/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
                 ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/USA/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString + "_Highways_Short.gif"));
                 ImgBox.CountiesSource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/USA/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString + "_County_Short.gif"));
                 ImgBox.RadarCircleOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/USA/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString + "_RangeRing_Short.gif"));
@@ -462,7 +447,6 @@ namespace Rad
                 ImgBox.LegendSource = null;
                 ImgBox.WarningsSource = null;
                 ImgBox.CitiesOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_cities.gif")); ;
-                //ImgBox.TownsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_moretowns.gif"));
                 ImgBox.RoadsOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_roads.gif"));
                 ImgBox.RoadNosOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/" + GenericCodeClass.HomeStationCodeString + "/" + GenericCodeClass.HomeStationCodeString.ToLower() + "_numbers.gif"));
                 ImgBox.RadarCircleOverlaySource = new BitmapImage(new Uri("ms-appx://Rad.Rad.Shared/Assets/Overlays/Canada/radar_circle.gif"));
@@ -470,6 +454,23 @@ namespace Rad
                 
             
         }
+
+        //do not delete
+        //private void SetSystemImage(string URI)
+        //{
+        //    Uri ImageUri = new Uri(URI);
+        //    BitmapImage bitmap = ImgBox.Source as BitmapImage;
+
+        //    try
+        //    {
+        //        if (bitmap != null && !bitmap.UriSource.AbsoluteUri.Equals(URI))
+        //            ImgBox.Source = new BitmapImage(ImageUri);
+        //    }
+        //    catch
+        //    {
+        //        ImgBox.Source = new BitmapImage(ImageUri);
+        //    }
+        //}
             
         //private void AdBox_ErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
         //{

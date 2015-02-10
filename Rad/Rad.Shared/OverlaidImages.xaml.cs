@@ -95,12 +95,6 @@ namespace Rad
             get { return (BitmapImage)RoadsOverlay.Source; }
         }
 
-//        public BitmapImage TownsOverlaySource
-//        {
-//            set { TownsOverlay.Source = value; }
-//            get { return (BitmapImage) TownsOverlay.Source; }
-//        }
-
         public BitmapImage RoadNosOverlaySource
         {
             set { RoadNoOverlay.Source = value; }
@@ -153,12 +147,6 @@ namespace Rad
             get { return RoadsOverlay.Visibility; }
         }
 
-//        public Visibility TownsOverlayVisibility
-//        {
-//            set { TownsOverlay.Visibility = value; }
-//            get { return TownsOverlay.Visibility; }
-//        }
-
         public Visibility RoadNosOverlayVisibility
         {
             set { RoadNoOverlay.Visibility = value; }
@@ -175,6 +163,33 @@ namespace Rad
         {
             set {CountiesOverlay.Visibility = value; }
             get { return CountiesOverlay.Visibility; }
+        }
+
+        public void ClearAllImages()
+        {
+            TopoBackground.Source = null;
+            BaseImage.Source = null;
+            CountiesOverlay.Source = null;
+            RoadsOverlay.Source = null;
+            RoadNoOverlay.Source = null;
+            RadarCircleOverlay.Source = null;
+            CityOverlay.Source = null;
+            WarningsOverlay.Source = null;
+            LegendOverlay.Source = null;
+
+        }
+
+        public void MakeImagesInvisible()
+        {
+            TopoBackground.Visibility = Visibility.Collapsed;
+            BaseImage.Visibility = Visibility.Collapsed;
+            CountiesOverlay.Visibility = Visibility.Collapsed;
+            RoadsOverlay.Visibility = Visibility.Collapsed;
+            RoadNoOverlay.Visibility = Visibility.Collapsed;
+            RadarCircleOverlay.Visibility = Visibility.Collapsed;
+            CityOverlay.Visibility = Visibility.Collapsed;
+            WarningsOverlay.Visibility = Visibility.Collapsed;
+            LegendOverlay.Visibility = Visibility.Collapsed;
         }
     }
 }

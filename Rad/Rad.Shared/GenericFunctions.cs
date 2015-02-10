@@ -29,7 +29,6 @@ static class GenericCodeClass
     private static string HomeStationCode;
     private static string HomeProvince;
     private static bool OverlayCities;
-    //private static bool OverlayTowns;
     private static bool OverlayRoads;
     private static bool OverlayRoadNos;
     private static bool OverlayCircles;
@@ -194,17 +193,14 @@ static class GenericCodeClass
         if (Client == null)
             Client = new HttpClient();
         
-        //string RegExpString = ">\\s*";
         DateTime CurrDateTime = DateTime.Now.ToUniversalTime();
-        //DateTime StartOfYearDate = new DateTime(CurrDateTime.Year - 1, 12, 31);
         DateTime StartDateTime;
         if(DownloadPeriod != 0)
             StartDateTime = CurrDateTime.Subtract(new TimeSpan(DownloadPeriod, 0, 0));    //Subtract 3 hours from the Current Time
         else
             StartDateTime = CurrDateTime.Subtract(new TimeSpan(1, 0, 0));    //Subtract 3 hours from the Current Time
 
-        //TimeSpan NoOfDays = CurrDateTime.Subtract(StartOfYearDate);
-
+        
         Client.DefaultRequestHeaders.IfModifiedSince = StartDateTime;
         var HttpClientTask = Client.GetAsync(URI);
 
@@ -270,7 +266,6 @@ static class GenericCodeClass
 
         try
         {
-            //Message = await Client.GetAsync(URI);
             Message = await HttpClientTask;
         }
         catch (Exception e)
@@ -300,14 +295,17 @@ static class GenericCodeClass
                 FileNames.Sort();
                 if(DownloadPeriod != 0)
                 {
+                    int MaxFiles = 6;
                     Location = FileNames.IndexOf(StartDateTimeString);
                     FileNames.RemoveRange(0, Location + 1);
 
-                    if (FileNames.Count > 9) //Display a mximum of 9 files in the loop.
+                    if (DownloadPeriod == 3)
+                        MaxFiles = 12;
+                    if (FileNames.Count > MaxFiles) //Display a maximum of 9 files in the loop.
                     {
                         //Remove every other file starting from the second oldest
                         int Index;
-                        int NoOfFilesToRemove = FileNames.Count - 9;
+                        int NoOfFilesToRemove = FileNames.Count - MaxFiles;
 
                         for (Index = 1; Index <= FileNames.Count && NoOfFilesToRemove > 0; Index += 1, NoOfFilesToRemove--)
                             FileNames.RemoveAt(Index);
@@ -417,7 +415,6 @@ static class GenericCodeClass
     {
         StorageFile ImageFile;
         WriteableBitmap ImageBitmap;
-        //BitmapImage Image = new BitmapImage();
 
         if(ImageFolder == null)
         {
