@@ -37,6 +37,11 @@
     <City>Corner Brook</City>
   </Province>
 
+  <Province Name="Nova Scotia">
+    <City>Halifax</City>
+    <City>Sydney</City>
+  </Province>
+
   <Province Name="Ontario">
     <City>Sudbury</City>
     <City>Sault Ste. Marie</City>
