@@ -113,8 +113,6 @@ namespace Rad
 
             CountryRadioButton1.Checked += CountryRadioButton_CheckedHandler;
             CountryRadioButton2.Checked += CountryRadioButton_CheckedHandler;
-            
-
         }
 
         private void OptionsPage_Unloaded(object sender, RoutedEventArgs e)
@@ -159,7 +157,7 @@ namespace Rad
                         if (ProvinceComboBox.Items[ProvinceComboBox.SelectedIndex].Equals("Regional Composites"))
                             GenericCodeClass.HomeStation = "http://radar.weather.gov/Conus/RadarImg/"; //Change this to ChosenCityCode?
                         else
-                            GenericCodeClass.HomeStation = "http://radar.weather.gov/ridge/RadarImg/" + ChosenRadarType + "/" + GenericCodeClass.HomeStationCodeString + "/"; //Change this to ChosenCityCode?
+                            GenericCodeClass.HomeStation = "http://radar.weather.gov/RadarImg/" + ChosenRadarType + "/" + GenericCodeClass.HomeStationCodeString + "/"; //Change this to ChosenCityCode?
                     }
 
                 }

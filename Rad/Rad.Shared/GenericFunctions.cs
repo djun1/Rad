@@ -202,6 +202,8 @@ static class GenericCodeClass
 
         
         Client.DefaultRequestHeaders.IfModifiedSince = StartDateTime;
+        if(Client.DefaultRequestHeaders.ContainsKey("User-Agent") == false)
+            Client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64, x64; Trident/7.0; Touch; rv:11.0) like Gecko");
         var HttpClientTask = Client.GetAsync(URI);
 
         if(IsCanadaSelected)
