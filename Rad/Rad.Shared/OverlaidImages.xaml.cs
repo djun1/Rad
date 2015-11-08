@@ -79,6 +79,9 @@ namespace Rad
             {
                 BaseImage.Source = value;
                 ControlHeight = value.PixelHeight;
+                if (TopoBackground != null)
+                    TopoBackground.Visibility = Visibility.Visible;
+                BaseImage.Visibility = Visibility.Visible;
             }
             get { return (BitmapImage) BaseImage.Source; }
         }

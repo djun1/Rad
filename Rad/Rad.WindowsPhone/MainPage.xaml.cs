@@ -123,6 +123,7 @@ namespace Rad
             {
                 //Show Error Message
                 //SetSystemImage("ms-appx:///Assets/Error.png");
+                FileDownloadProgBar.Visibility = Visibility.Collapsed;
                 StatusBox.Text = "Error Downloading Images";
                 ImgBox.MakeImagesInvisible();
             }

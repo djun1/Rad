@@ -131,6 +131,7 @@ namespace Rad
                 //Show Error Message
                 //SetSystemImage("ms-appx:///Assets/Error.png");
                 StatusBox.Text = "Error Downloading Images";
+                FileDownloadProgBar.Visibility = Visibility.Collapsed;
                 ImgBox.MakeImagesInvisible();
             }
         }
@@ -426,6 +427,7 @@ namespace Rad
                 //Show Error Message
                 //SetSystemImage("ms-appx:///Assets/Error.png");
                 StatusBox.Text = "Error Downloading Images";
+                FileDownloadProgBar.Visibility = Visibility.Collapsed;
                 ImgBox.MakeImagesInvisible();
             }
             else
