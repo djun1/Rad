@@ -215,6 +215,11 @@ namespace Rad
                 await ChangeImage(CurrImgIndex);
         }
 
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.UI.ApplicationSettings.SettingsPane.Show();
+        }
+
         private async Task DownloadFiles()
         {
             int i;
@@ -542,6 +547,8 @@ namespace Rad
                 
             
         }
+
+
         //do not delete
         //private void SetSystemImage(string URI)
         //{
